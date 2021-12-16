@@ -126,19 +126,19 @@ RailsAdmin.config do |config|
   config.model 'GenericSubscription' do
     visible true
     label 'Sottoscrizione GENERICA'
-    label_plural 'Sottoscrizioni GENERICA'
+    label_plural 'Sottoscrizioni GENERICHE'
   end
 
   config.model 'GenericOffice' do
     visible true
     label 'Ufficio GENERICO'
-    label_plural 'Uffici GENERICO'
+    label_plural 'Uffici GENERICI'
   end
 
   config.model 'GenericPractise' do
     visible true
     label 'Pratica GENERICA'
-    label_plural 'Pratiche GENERICA'
+    label_plural 'Pratiche GENERICHE'
   end
 
   config.actions do
