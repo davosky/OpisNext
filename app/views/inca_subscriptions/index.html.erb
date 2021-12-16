@@ -95,14 +95,16 @@
                       <% end %>
                     <% end %>
                   <% end %>
-                  <% unless inca_subscription.pdf.attached? %>
-                    &emsp;
-                    <%= link_to inca_subscription_path(inca_subscription, format: 'pdf'), target: :_blank, title: 'Stampa la Ricevuta in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-                      <i class='fas fa-file-pdf'></i>
+                  <% if inca_subscription.user_id == current_user.id || current_user.admin == true %>
+                    <% unless inca_subscription.pdf.attached? %>
+                      &emsp;
+                      <%= link_to inca_subscription_path(inca_subscription, format: 'pdf'), target: :_blank, title: 'Stampa la Ricevuta in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+                        <i class='fas fa-file-pdf'></i>
+                      <% end %>
                     <% end %>
-                  <% end %>
-                </td>
-              </tr>
+                  </td>
+                </tr>
+              <% end %>
             <% end %>
           </tbody>
         </table>
