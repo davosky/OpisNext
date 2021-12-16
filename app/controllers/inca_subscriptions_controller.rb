@@ -6,7 +6,7 @@ class IncaSubscriptionsController < ApplicationController
   def index
     @user = current_user
     @q = IncaSubscription.ransack(params[:q])
-    @inca_subscriptions = if @user.admin == true
+    @inca_subscriptions = if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
                             @q.result(didtinct: true).order(name: 'DESC')
                               .paginate(page: params[:page], per_page: 10)
                           else
@@ -87,6 +87,7 @@ class IncaSubscriptionsController < ApplicationController
   end
 
   def edit
+    redirect_to inca_subscriptions_path if @inca_subscription.cancellation.present?
     @tariffs = Tariff.all.order(position: 'ASC')
   end
 

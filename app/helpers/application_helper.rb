@@ -17,7 +17,19 @@ module ApplicationHelper
     "#{inca_subscription.customer_name} #{inca_subscription.customer_forname}"
   end
 
+  def generic_subscription_customer_full_name(generic_subscription)
+    "#{generic_subscription.customer_name} #{generic_subscription.customer_forname}"
+  end
+
   def cancelled?(inca_receipt)
     'text-white bg-primary' if inca_receipt.cancellation
+  end
+
+  def inca_user?
+    current_user.institute == 'Patronato INCA' || current_user.admin == true || current_user.institute == 'Ufficio Amministrazione'
+  end
+
+  def generic_user?
+    current_user.institute != 'Patronato INCA' || current_user.admin == true || current_user.institute == 'Ufficio Amministrazione'
   end
 end

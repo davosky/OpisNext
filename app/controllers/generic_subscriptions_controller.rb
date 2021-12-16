@@ -87,6 +87,7 @@ class GenericSubscriptionsController < ApplicationController
   end
 
   def edit
+    redirect_to generic_subscriptions_path if @generic_subscription.cancellation.present?
     @tariffs = Tariff.all.order(position: 'ASC')
   end
 

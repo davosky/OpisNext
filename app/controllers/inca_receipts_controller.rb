@@ -8,7 +8,7 @@ class IncaReceiptsController < ApplicationController
   def index
     @user = current_user
     @q = IncaReceipt.ransack(params[:q])
-    @inca_receipts = if @user.admin == true
+    @inca_receipts = if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
                        @q.result(distinct: true).order(name: 'DESC')
                          .paginate(page: params[:page], per_page: 10)
                      else
@@ -29,11 +29,13 @@ class IncaReceiptsController < ApplicationController
     @inca_receipt = IncaReceipt.new
   end
 
-  def edit; end
+  def edit
+    redirect_to inca_receipts_path if @inca_receipt.cancellation.present?
+  end
 
   def billdownload
     @user = current_user
-    if @user.admin == true
+    if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
       @q = IncaReceipt.ransack(params[:q])
       @inca_receipts = @q.result(distinct: true)
                          .where(cancellation: [false, nil])

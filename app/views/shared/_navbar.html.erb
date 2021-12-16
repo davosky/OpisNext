@@ -7,70 +7,74 @@
   </button>
   <div class='collapse navbar-collapse' id='navbarColor01'>
     <ul class='navbar-nav mr-auto'>
-      <li class='nav-item dropdown'>
-        <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-          <%= image_tag('icon_inca.svg', class: 'img-fluid') %>
-          &nbsp;
-          INCA
-        </a>
-        <div class='dropdown-menu'>
-          <%= link_to new_inca_receipt_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-plus'></i>
-            &nbsp;&nbsp;Nuova Ricevuta
-          <% end %>
-          <%= link_to inca_receipts_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-list'></i>
-            &nbsp;&nbsp;Elenco Ricevute
-          <% end %>
-          <%= link_to billdownload_inca_receipts_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-print'></i>
-            &nbsp;&nbsp;Scarico Ricevute
-          <% end %>
-          <div class='dropdown-divider'></div>
-          <%= link_to new_inca_subscription_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-plus'></i>
-            &nbsp;&nbsp;Nuova Sottoscrizione
-          <% end %>
-          <%= link_to inca_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-list'></i>
-            &nbsp;&nbsp;Elenco Sottoscrizioni
-          <% end %>
-          <%= link_to billdownload_inca_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
-            &nbsp;&nbsp;Scarico Sottoscrizioni
-          <% end %>
-          <%= link_to billdownloadnidil_inca_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
-            &nbsp;&nbsp;Scarico Sottoscrizioni NIDIL
-          <% end %>
-        </div>
-      </li>
-      <li class='nav-item dropdown'>
-        <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-          <%= image_tag('icon_generic.svg', class: 'img-fluid') %>
-          &nbsp;
-          GENERICHE
-        </a>
-        <div class='dropdown-menu'>
-          <div class='dropdown-divider'></div>
-          <%= link_to new_generic_subscription_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-plus'></i>
-            &nbsp;&nbsp;Nuova Sottoscrizione
-          <% end %>
-          <%= link_to generic_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-list'></i>
-            &nbsp;&nbsp;Elenco Sottoscrizioni
-          <% end %>
-          <%= link_to billdownload_generic_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
-            &nbsp;&nbsp;Scarico Sottoscrizioni
-          <% end %>
-          <%= link_to billdownloadnidil_generic_subscriptions_path, class: 'dropdown-item'  do %>
-            <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
-            &nbsp;&nbsp;Scarico Sottoscrizioni NIDIL
-          <% end %>
-        </div>
-      </li>
+      <% if inca_user? %>
+        <li class='nav-item dropdown'>
+          <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
+            <%= image_tag('icon_inca.svg', class: 'img-fluid') %>
+            &nbsp;
+            INCA
+          </a>
+          <div class='dropdown-menu'>
+            <%= link_to new_inca_receipt_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-plus'></i>
+              &nbsp;&nbsp;Nuova Ricevuta
+            <% end %>
+            <%= link_to inca_receipts_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-list'></i>
+              &nbsp;&nbsp;Elenco Ricevute
+            <% end %>
+            <%= link_to billdownload_inca_receipts_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-receipt'></i>&nbsp;<i class='fas fa-print'></i>
+              &nbsp;&nbsp;Scarico Ricevute
+            <% end %>
+            <div class='dropdown-divider'></div>
+            <%= link_to new_inca_subscription_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-plus'></i>
+              &nbsp;&nbsp;Nuova Sottoscrizione
+            <% end %>
+            <%= link_to inca_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-list'></i>
+              &nbsp;&nbsp;Elenco Sottoscrizioni
+            <% end %>
+            <%= link_to billdownload_inca_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
+              &nbsp;&nbsp;Scarico Sottoscrizioni
+            <% end %>
+            <%= link_to billdownloadnidil_inca_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
+              &nbsp;&nbsp;Scarico Sottoscrizioni NIDIL
+            <% end %>
+          </div>
+        </li>
+      <% end %>
+      <% if generic_user? %>
+        <li class='nav-item dropdown'>
+          <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
+            <%= image_tag('icon_generic.svg', class: 'img-fluid') %>
+            &nbsp;
+            GENERICHE
+          </a>
+          <div class='dropdown-menu'>
+            <div class='dropdown-divider'></div>
+            <%= link_to new_generic_subscription_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-plus'></i>
+              &nbsp;&nbsp;Nuova Sottoscrizione
+            <% end %>
+            <%= link_to generic_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-list'></i>
+              &nbsp;&nbsp;Elenco Sottoscrizioni
+            <% end %>
+            <%= link_to billdownload_generic_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
+              &nbsp;&nbsp;Scarico Sottoscrizioni
+            <% end %>
+            <%= link_to billdownloadnidil_generic_subscriptions_path, class: 'dropdown-item'  do %>
+              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
+              &nbsp;&nbsp;Scarico Sottoscrizioni NIDIL
+            <% end %>
+          </div>
+        </li>
+      <% end %>
     </ul>
     <ul class='navbar-nav ml-auto'>
       <li class='nav-item'>
