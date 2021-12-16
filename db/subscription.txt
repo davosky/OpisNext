@@ -1,0 +1,21 @@
+rails g scaffold IncaSubscription inca_office:references subscription_typology:references customer_name customer_forname sex:references customer_birth_place customer_birth_date:date customer_fiscal_code customer_nationality customer_address customer_zip customer_city customer_province customer_phone customer_mobile customer_email company_vat_number company_name company_address company_zip company_city company_province company_typology:references work_qualify:references work_level:references work_contract work_worker:references work_employee_date:date work_workplace payment payment_typology:references category:references subscription_year:references inca_practise:references privacy_one:references privacy_two:references privacy_three:references note:text cancellation:boolean cancellation_reason name:integer date:date institute user:references
+
+rails g model SubscriptionTypology name position:integer
+
+rails g model CompanyTypology name position:integer
+
+rails g model PrivacyOne name position:integer
+
+rails g model PrivacyTwo name position:integer
+
+rails g model PrivacyThree name position:integer
+
+rails g model Sex name position:integer
+
+rails g model SubscriptionYear name position:integer
+
+rails g model WorkLevel name position:integer
+
+rails g model WorkQualify name position:integer
+
+rails g model WorkWorker name position:integer

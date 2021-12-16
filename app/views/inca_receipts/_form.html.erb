@@ -1,0 +1,213 @@
+<%= form_with(model: inca_receipt) do |form| %>
+  <% if inca_receipt.errors.any? %>
+    <div id='error_explanation'>
+      <h2 class='text-primary'>
+        <strong>
+          <%= pluralize(inca_receipt.errors.count, 'Errori') %>
+          &emsp;
+          Non posso salvare la Ricevuta corrente:
+        </strong>
+      </h2>
+      <ul>
+        <% inca_receipt.errors.each do |error| %>
+          <li class='text-primary'><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='row'>
+    <div class='col-lg-6'>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-building'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Ufficio:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.collection_select(:inca_office_id, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-user'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Nome:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_name, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='far fa-user'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Cognome:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_forname, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-globe-europe'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Luogo di Nascita:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_birth_place, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-calendar-alt'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Data di Nascita:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_birth_date, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-credit-card'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Codice Fiscale:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_fiscal_code, class:'form-control' %>
+      </div>
+    </div>
+    <div class='col-lg-6'>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-road'></i>
+            &emsp;
+            <span class='text-primary'>
+              Indirizzo:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_address, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-envelope'></i>
+            &emsp;
+            <span class='text-primary'>
+              Cap:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_zip, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-city'></i>
+            &emsp;
+            <span class='text-primary'>
+              Comune:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_city, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-landmark'></i>
+            &emsp;
+            <span class='text-primary'>
+              Provincia:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :customer_province, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-euro-sign'></i>
+            &emsp;
+            <span class='text-primary'>
+              Ammontare:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.text_field :payment, class:'form-control' %>
+      </div>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-money-check'></i>
+            &nbsp;
+            <span class='text-primary'>
+              Tipo Pagamento:&nbsp;
+            </span>
+          </div>
+        </div>
+        <%= form.collection_select(:payment_typology_id, PaymentTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+      </div>
+    </div>
+  </div>
+  <div class='row'>
+    <div class='col-lg-12'>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend '>
+          <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+            <i class='fas fa-clipboard'></i>
+            &emsp;
+            Note:&nbsp;
+          </div>
+        </div>
+        <%= form.text_area :note, class:'form-control' %>
+      </div>
+      <% if !current_page?(new_inca_receipt_url) && !@inca_receipt.pdf.attached? %>
+        <div class='input-group p-1'>
+          <div class='input-group-prepend '>
+            <div class='input-group-text input-group-text-form text-primary'>
+              <i class='fas fa-file-pdf'></i>
+              &nbsp;
+              Allega la Ricevuta in formato PDF:&nbsp;
+            </div>
+          </div>
+          <%= form.file_field :pdf, class:'form-control' %>
+        </div>
+      <% end %>
+      <span class='float-right p-2'>
+        <%= link_to inca_receipts_path, class: 'btn btn-sm btn-outline-primary'  do %>
+          <i class='fas fa-undo'></i>
+          &emsp;
+          <strong>Annulla</strong>
+        <% end %>
+        &emsp;
+        <%= button_tag(type: 'submit', class: 'btn btn-outline-primary btn-sm') do %>
+          <strong>
+            <i class='fas fa-save'></i>
+            &emsp;
+            <% if current_page?(new_inca_receipt_path) %>
+              <strong>Salva</strong>
+            <% else %>
+              <strong>Aggiorna</strong>
+            <% end %>
+          </strong>
+        <% end %>
+      </span>
+    </div>
+  </div>
+<% end %>

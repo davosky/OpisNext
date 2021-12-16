@@ -1,0 +1,15 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: 'Ricevute Liberalita INCA') do |sheet|
+  wb.styles do |s|
+  black_cell = s.add_style :bg_color => "ff0000", :fg_color => "FF", :sz => 12, :alignment => { :horizontal=> :center }
+  currency = wb.styles.add_style :format_code => '0.00'
+  sheet.add_row ['' ]
+  sheet.add_row ['RICEVUTE LIBERALITA\' INCA' ]
+  sheet.add_row ['PERIODO', @inca_receipts.last.date.beginning_of_month.strftime('%d/%m/%Y'), @inca_receipts.first.date.end_of_month.strftime('%d/%m/%Y') ]
+  sheet.add_row ['' ]
+  sheet.add_row ['Ammontare', 'Data', 'Numero', 'Tipologia Pagamento', 'Ufficio', 'Nome', 'Cognome', 'Codice Fiscale', 'Indirizzo', 'Cap', 'Comune', 'Provincia', 'Note' ], :style => [black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell, black_cell]
+  @inca_receipts.each do |inca_receipt|
+    sheet.add_row [inca_receipt.payment, inca_receipt.date, inca_receipt.name, inca_receipt.payment_typology.name, inca_receipt.inca_office.name, inca_receipt.customer_name, inca_receipt.customer_forname, inca_receipt.customer_fiscal_code, inca_receipt.customer_address, inca_receipt.customer_zip, inca_receipt.customer_city, inca_receipt.customer_province, inca_receipt.note], :style=> [currency]
+  end
+  end
+end

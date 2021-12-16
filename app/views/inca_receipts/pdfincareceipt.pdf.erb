@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8' />
+    <%= stylesheet_link_tag wicked_pdf_asset_base64('pdfincareceipt') %>
+  </head>
+  <body>
+    <div id='page'>
+      <div id='header'>
+        <div id='logo'>
+          <%= inline_svg_tag('header_ricevuta_inca.svg', size: '170mm * 15mm', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        </div>
+        <hr>
+      </div>
+      <br>
+      <br>
+      <br>
+      <br>
+      <br>
+      <div>
+        <div class='row'>
+          <h3>
+            <strong>
+              Ricevuta n°&nbsp;<%= @inca_receipt.name %>&nbsp;del:&nbsp;<%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+            </strong>
+          </h3>
+          <small>
+            (Art. 13 L. 152/2001 e Art. 769-783 C.C.)
+          </small>
+          <p>
+            Il sottoscritto&nbsp;
+            <strong>
+              <%= @inca_receipt.customer_name %>&nbsp;<%= @inca_receipt.customer_forname %>
+            </strong>
+            &nbsp;
+            nato a
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_birth_place %>
+            </strong>
+            &nbsp;
+            il
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_birth_date.strftime('%d/%m/%Y') %>
+            </strong>
+          </p>
+          <p>
+            C.F.
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_fiscal_code %>
+            </strong>
+          </p>
+          <p>
+            residente a
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_city %>
+            </strong>
+            &nbsp;
+            in
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_address %>
+            </strong>
+          </p>
+          <p>
+            Ai sensi delle sopra richiamate disposizioni di legge,
+          </p>
+          <p>
+            elargisce a:
+            &nbsp;
+            <strong>
+              <%= current_user.institute %>
+            </strong>
+            &nbsp;
+            ufficio di:
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.inca_office.name %>
+            </strong>
+          </p>
+          <p>
+            la somma di
+            &nbsp;
+            <strong>
+              <%= number_to_currency(@inca_receipt.payment) %>
+            </strong>
+            &nbsp;
+            a titolo di liberalit&agrave;.
+            <br>
+            <br>
+            Data:
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+            </strong>
+            <br>
+            <br>
+            Firma:
+            <br>
+            <br>
+            <br>
+            <br>
+            ..............................................................
+          </p>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class='row'>
+          <p>
+            <strong>
+              <%= current_user.institute %>
+            </strong>
+            &nbsp;
+            ufficio di:
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.inca_office.name %>
+            </strong>
+          </p>
+          <p>
+            accetta la liberalit&agrave; di cui sopra elargita in suo favore
+          </p>
+          <p>
+            dal/la Sig/Sig.ra
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.customer_name %>&nbsp;<%= @inca_receipt.customer_forname %>
+            </strong>
+          </p>
+          <p>
+            La presente vale per accettazione e ricevuta.
+          </p>
+          <p>
+            Data:
+            &nbsp;
+            <strong>
+              <%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+            </strong>
+            <br>
+            <br>
+            Firma:
+            <br>
+            <br>
+            <br>
+            <br>
+            ..............................................................
+            <br>
+            <small>
+              <%= current_user.name %>
+            </small>
+          </p>
+        </div>
+      </div>
+      <footer>
+        <hr>
+        <small id='smallandlite'>
+          operatore:&nbsp;<%= current_user.name %>
+        </small>
+        <br>
+        <small>
+          <strong>OpisNext</strong> web-application to manage receipts and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+        </small>
+      </footer>
+    </div>
+  </body>
+</html>

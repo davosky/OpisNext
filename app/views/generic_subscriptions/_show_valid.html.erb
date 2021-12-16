@@ -1,0 +1,335 @@
+<div class='col-lg-12'>
+  <h3 class='text-primary p-2'>
+    <i class='fas fa-receipt'></i>
+    &emsp;
+    Sottoscrizione GENERICA
+    &emsp;
+    <strong>
+      &emsp; Numero:&nbsp;<%= @generic_subscription.name %>
+      &emsp; Del:&nbsp;<%= l(@generic_subscription.date) %>
+    </strong>
+    <span class='float-right'>
+      <%= link_to generic_subscriptions_path, class: 'btn btn-sm btn-outline-primary' do %>
+        <i class='fas fa-arrow-left'></i>
+        &nbsp;
+        <i class='fas fa-receipt'></i>
+        &emsp;
+        <strong>Ritorna alla lista</strong>
+      <% end %>
+    </span>
+  </h3>
+  <hr class='hr-primary p-2'/>
+  <div class='card'>
+    <div class='card-body shadow'>
+      <div class='row p-1'>
+        <div class='col-3'>
+          Operatore:
+          &nbsp;
+          <strong>
+            <%= @generic_subscription.user.name %>
+          </strong>
+        </div>
+        <div class='col-3'>
+          Istituto:
+          &nbsp;
+          <strong>
+            <%= @generic_subscription.institute %>
+          </strong>
+        </div>
+        <div class='col-6'>
+          Ufficio:
+          &nbsp;
+          <strong>
+            <%= @generic_subscription.generic_office.name %>
+          </strong>
+          <br/>
+          Evento Attivazione:
+          &nbsp;
+          <strong>
+            <%= @generic_subscription.generic_practise.name %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-6 offset-3 text-center'>
+          <% if @generic_subscription.subscription_typology.name == 'NUOVA ISCRIZIONE' %>
+            <i class='fas fa-check-square text-primary'></i>
+            &emsp;
+            <strong>
+              <%= @generic_subscription.subscription_typology.name %>
+            </strong>
+          <% elsif @generic_subscription.subscription_typology.name == 'RINNOVO' %>
+            <i class='fas fa-square text-primary'></i>
+            &emsp;
+            <strong>
+              <%= @generic_subscription.subscription_typology.name %>
+            </strong>
+          <% else %>
+            <i class='fas fa-th text-primary'></i>
+            &emsp;
+            <strong>
+              <%= @generic_subscription.subscription_typology.name %>
+            </strong>
+          <% end %>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Nome:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_name %>
+          </strong>
+          <br/>
+          Cognome:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_forname %>
+          </strong>
+          <br/>
+          Codice Fiscale:
+          &emsp;
+          <strong class='text-primary'>
+            <%= @generic_subscription.customer_fiscal_code %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Data di Nascita:
+          &emsp;
+          <strong>
+            <%= l(@generic_subscription.customer_birth_date) %>
+          </strong>
+          <br/>
+          Luogo di Nascita:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_birth_place %>
+          </strong>
+          <br/>
+          Indirizzo:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_address %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Cap:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_zip %>
+          </strong>
+          <br/>
+          Comune:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_city %>
+          </strong>
+          <br/>
+          Provincia:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_province %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Telefono:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_phone %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Cellulare:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_mobile %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Email:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.customer_email %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Azienda:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_name %>
+          </strong>
+          <br/>
+          P.IVA:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_vat_number %>
+          </strong>
+          <br/>
+          CF:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_fiscal_code %>
+          </strong>
+          <br/>
+          Tipologia:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_typology.name if @generic_subscription.company_typology_id.present?  %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Indirizzo:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_address %>
+          </strong>
+          <br/>
+          Cap:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_zip %>
+          </strong>
+          <br/>
+          Comune:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_city %>
+          </strong>
+          <br/>
+          Provincia:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.company_province %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Lavoro:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.work_worker.name if @generic_subscription.work_worker_id.present? %>
+          </strong>
+          Qualifica:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.work_qualify.name if @generic_subscription.work_qualify_id.present? %>
+          </strong>
+          <br/>
+          Livello:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.work_level.name if @generic_subscription.work_level_id.present? %>
+          </strong>
+          <br/>
+          Contratto:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.work_contract %>
+          </strong>
+          <br/>
+          Data Assunzione:
+          &emsp;
+          <strong>
+            <%= l(@generic_subscription.work_employee_date) if @generic_subscription.work_employee_date.present? %>
+          </strong>
+          <br/>
+          Sede Lavorativa:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.work_workplace %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Ha versato:
+          &emsp;
+          <strong>
+            <%= number_to_currency(@generic_subscription.payment) %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Per l'iscrizione alla Categoria:
+          &emsp;
+          <strong class='text-primary'>
+            <%= @generic_subscription.category.name %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          in data:
+          &emsp;
+          <strong class='text-primary'>
+            <%= l(@generic_subscription.date) %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Privacy 1:
+          &emsp;
+          <strong>
+            <% if @generic_subscription.privacy_one_id.present? && @generic_subscription.privacy_one.name == 'SI' %>
+              <i class='far fa-check-square'></i>
+            <% elsif @generic_subscription.privacy_one_id.present? && @generic_subscription.privacy_one.name == 'NO' %>
+              <i class='far fa-square'></i>
+            <% else %>
+              <i class='far fa-question'></i>
+            <% end %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Privacy 2:
+          &emsp;
+          <strong>
+            <% if @generic_subscription.privacy_two_id.present? && @generic_subscription.privacy_two.name == 'SI' %>
+              <i class='far fa-check-square'></i>
+            <% elsif @generic_subscription.privacy_two_id.present? && @generic_subscription.privacy_two.name == 'NO' %>
+              <i class='far fa-square'></i>
+            <% else %>
+              <i class='far fa-question'></i>
+            <% end %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Privacy 3:
+          &emsp;
+          <strong>
+            <% if @generic_subscription.privacy_three_id.present? && @generic_subscription.privacy_three.name == 'SI' %>
+              <i class='far fa-check-square'></i>
+            <% elsif @generic_subscription.privacy_three_id.present? && @generic_subscription.privacy_three.name == 'NO' %>
+              <i class='far fa-square'></i>
+            <% else %>
+              <i class='far fa-question'></i>
+            <% end %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col'>
+          Note:
+          &emsp;
+          <strong>
+            <%= @generic_subscription.note %>
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <% unless !@generic_subscription.pdf.attached? %>
+    <div class='col-12 text-center'>
+      <iframe src=<%= url_for(@generic_subscription.pdf) %> width='975' height='1400' style='border: none'></iframe>
+    </div>
+  <% end %>
+</div>
+<br/>

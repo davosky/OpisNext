@@ -1,0 +1,70 @@
+<%= form_with(model: howto) do |form| %>
+  <% if howto.errors.any? %>
+    <div id="error_explanation">
+      <h2 class='text-primary'>
+        <strong>
+          <%= pluralize(howto.errors.count, "Errori") %>
+          &emsp;
+          Non posso salvare la Guida corrente:
+        </strong>
+      </h2>
+      <ul>
+        <% howto.errors.each do |error| %>
+          <li class='text-primary'><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  <div class='input-group p-2'>
+    <div class='input-group-prepend '>
+      <div class='input-group-text input-group-text-form igp-fixed-width'>
+        <i class='fas fa-book'></i>
+        &emsp;
+        Titolo:&nbsp;
+      </div>
+    </div>
+    <%= form.text_field :title, class: 'form-control' %>
+  </div>
+  <div class='input-group p-2'>
+    <div class='input-group-prepend '>
+      <div class='input-group-text input-group-text-form igp-fixed-width'>
+        <i class='fas fa-book-open'></i>
+        &emsp;
+        Argomento:&nbsp;
+      </div>
+    </div>
+    <%= form.text_field :topic, class: 'form-control' %>
+  </div>
+  <div class='input-group p-2'>
+    <div class='input-group-prepend '>
+      <div class='input-group-text input-group-text-form igp-fixed-width'>
+        <i class='fas fa-align-left'></i>
+        &emsp;
+        Descrizione:&nbsp;
+      </div>
+    </div>
+    <%= form.text_area :description, class: 'form-control' %>
+  </div>
+  <hr/>
+  <span class='float-right'>
+    <% if current_page?(new_howto_path) %>
+      <%= button_tag(type: 'submit', class: 'btn btn-sm btn-primary', title: 'Salva', 'data-toggle' => 'tooltip', 'data-placement' => 'top') do %>
+        <i class='fas fa-save'></i>
+        &emsp;
+        <strong>
+          Salva
+        </strong>
+      <% end %>
+    <% else %>
+      <%= button_tag(type: 'submit', class: 'btn btn-sm btn-primary', title: 'Salva', 'data-toggle' => 'tooltip', 'data-placement' => 'top') do %>
+        <i class='fas fa-save'></i>
+        &emsp;
+        <strong>
+          Aggiorna
+        </strong>
+      <% end %>
+    <% end %>
+  </span>
+  <br/>
+  &emsp;
+<% end %>

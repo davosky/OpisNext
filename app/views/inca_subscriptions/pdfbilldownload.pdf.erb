@@ -1,0 +1,176 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset='utf-8'/>
+    <%= stylesheet_link_tag wicked_pdf_asset_base64('pdfbilldownload') %>
+  </head>
+  <body>
+    <div id='page'>
+      <div id='header'>
+        <div id='logo'>
+          <%= inline_svg('header_ricevuta_inca.svg', size: '170mm * 15mm', preserve_aspect_ratio: 'xMaxYMax meet') %>
+        </div>
+        <hr>
+        <br>
+        <div>
+          <h3>
+            Sottoscrizioni ALTRE CATEGORIE
+            <br>
+            <br>
+            Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
+          </h3>
+        </div>
+      </div>
+      <br>
+      <hr>
+      <br>
+      <div class='row'>
+        <table>
+          <thead>
+            <tr>
+              <th>Numero:</th>
+              <th>Data:</th>
+              <th>Nome e Cognome:</th>
+              <th>Codice Fiscale:</th>
+              <th>Categoria:</th>
+              <th>Pagamento:</th>
+              <th>Ammontare:</th>
+              <th>Note:</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- INIZIALIZZAZIONE VARIABILI -->
+            <% @totalegenerale = 0 %>
+            <% @contantitotale = 0 %>
+            <% @postotale = 0 %>
+            <% @bonificototale = 0 %>
+            <% @ccpostaletotale = 0 %>
+            <% @altrototale = 0 %>
+            <!-- RICERCA -->
+            <% @inca_subscriptions.each do |inca_subscription| %>
+              <tr>
+                <td id='smallandlite'><%= inca_subscription.name %></td>
+                <td id='smallandlite'><%= inca_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= inca_subscription.customer_name %>&nbsp;<%= inca_subscription.customer_forname %></td>
+                <td id='smallandlite'><%= inca_subscription.customer_fiscal_code %></td>
+                <td id='smallandlite'><%= inca_subscription.category.name %></td>
+                <td id='smallandlite'><%= inca_subscription.payment_typology.name %></td>
+                <td id='smallandlite'><%= number_to_currency(inca_subscription.payment) %></td>
+                <td id='smallandlite'><%= truncate(inca_subscription.note, length: 100) %></td>
+              </tr>
+              <!-- NOME UFFICIO -->
+              <% @ufficio = inca_subscription.inca_office.name %>
+              <!-- TOTALE GENERALE -->
+              <% @totale = inca_subscription.payment %>
+              <% @totalegenerale = @totale + @totalegenerale %>
+              <!-- CONTANTI -->
+              <% if inca_subscription.payment_typology_id == 1 %>
+                <% @contanti = inca_subscription.payment %>
+                <% @contantitotale = @contanti + @contantitotale %>
+              <% end %>
+              <!-- POS -->
+              <% if inca_subscription.payment_typology_id == 2 %>
+                <% @pos = inca_subscription.payment %>
+                <% @postotale = @pos + @postotale %>
+              <% end %>
+              <% if inca_subscription.payment_typology_id == 3 %>
+                <% @bonifico = inca_subscription.payment %>
+                <% @bonificototale = @bonifico + @bonificototale %>
+              <% end %>
+              <% if inca_subscription.payment_typology_id == 4 %>
+                <% @ccpostale = inca_subscription.payment %>
+                <% @ccpostaletotale = @ccpostale + @ccpostaletotale %>
+              <% end %>
+              <% if inca_subscription.payment_typology_id == 5 %>
+                <% @altro = inca_subscription.payment %>
+                <% @altrototale = @altro + @altrototale %>
+              <% end %>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <hr>
+        <h3>
+          <strong>
+            <% if current_user.institute != 'Ufficio Amministrazione' %>
+              <%= current_user.institute %>
+            <% else %>
+              Ufficio
+            <% end %>
+            &nbsp;-&nbsp;
+            <%= @ufficio %>
+          </strong>
+        </h3>
+        <h3>
+          <strong>
+            Periodo:&nbsp;
+            <%= @inca_subscriptions.last.date.beginning_of_month.strftime('%d/%m/%Y') %>
+            &nbsp;-&nbsp;
+            <%= @inca_subscriptions.first.date.end_of_month.strftime('%d/%m/%Y') %>
+          </strong>
+        </h3>
+        <hr>
+        <br>
+        <strong>
+          Contanti/Assegno: <%= number_to_currency(@contantitotale) %>
+          &nbsp;-&nbsp;
+          POS: <%= number_to_currency(@postotale) %>
+          &nbsp;-&nbsp;
+          Bonifico: <%= number_to_currency(@bonificototale) %>
+          &nbsp;-&nbsp;
+          CC Postale: <%= number_to_currency(@ccpostaletotale) %>
+          &nbsp;-&nbsp;
+          Altro: <%= number_to_currency(@altrototale) %>
+        </strong>
+        <h3>
+          <span>
+            Totale: <%= number_to_currency(@totalegenerale) %>
+          </span>
+        </h3>
+      </div>
+      <br>
+      <br>
+      <table class='center-border'>
+        <thead>
+          <tr class='red'>
+            <th class='red'>TAGLIO</th>
+            <th class='red'>500&nbsp;</th>
+            <th class='red'>100&nbsp;</th>
+            <th class='red'>50&nbsp;&nbsp;</th>
+            <th class='red'>20&nbsp;&nbsp;</th>
+            <th class='red'>10&nbsp;&nbsp;</th>
+            <th class='red'>5&nbsp;&nbsp;&nbsp;</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class='red'>
+            <td class='red'><strong>N&nbsp;</strong></td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+          </tr>
+          <tr class='red'>
+            <td class='red'><strong>EURO</strong></td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+            <td class='red'>&nbsp;</td>
+          </tr>
+        </tbody>
+      </table>
+      <br />
+      <br />
+      <br />
+      <div>
+        <small id='smallandlite'>
+          Operatore:&nbsp;<%= current_user.name %>&nbsp;-&nbsp;<strong>OpisNext</strong> web-application to manage subscriptions and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+        </small>
+      </div>
+    </div>
+  </body>
+</html>

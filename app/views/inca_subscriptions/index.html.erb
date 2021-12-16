@@ -1,0 +1,117 @@
+<!-- NEW  -->
+<div class='row'>
+  <div class='col-12'>
+    <h3 class='text-primary p-2'>
+      <i class='far fa-address-card'></i>&emsp;<strong>Sottoscrizioni INCA</strong>
+    </h3>
+    <hr class='hr-primary p-2'/>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-12'>
+    <%= search_form_for @q, id: 'search-form', url: inca_subscriptions_path do |form| %>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='fas fa-user'></i>
+            &nbsp;
+            Nome:&nbsp;
+          </div>
+        </div>
+        <%= form.text_field :customer_name_cont, class:'form-control' %>
+        &emsp;
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='far fa-user'></i>
+            &nbsp;
+            Cognome:&nbsp;
+          </div>
+        </div>
+        <%= form.text_field :customer_forname_cont, class:'form-control' %>
+        &emsp;
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='fas fa-id-card'></i>
+            &nbsp;
+            Codice Fiscale:&nbsp;
+          </div>
+        </div>
+        <%= form.text_field :customer_fiscal_code_cont, class:'form-control' %>
+        &emsp;
+        <%= button_tag type: 'submit', class: 'btn btn-primary', title: 'Cerca', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+          <i class='fas fa-search'></i>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br/>
+<div class='row'>
+  <div class='col-12'>
+    <div class='card'>
+      <div class='card-body shadow'>
+        <table class='table table-striped table-hover'>
+          <thead>
+            <tr>
+              <th>Numero</th>
+              <th>Data</th>
+              <th>Nome</th>
+              <th>Codice Fiscale</th>
+              <th>Ammontare</th>
+              <th>Note</th>
+              <th colspan='1'></th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @inca_subscriptions.each do |inca_subscription| %>
+              <tr id='<%= dom_id(inca_subscription) %>' class='<%= cancelled?(inca_subscription) %>'>
+                <td>
+                  <%= link_to inca_subscription, title: 'Visualizza Dettaglio', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+                    <div class='circle-g200'>
+                      <strong >
+                        <%= inca_subscription.name %>
+                      </strong>
+                    </div>
+                  <% end %>
+                </td>
+                <td><%= l(inca_subscription.date) %></td>
+                <td>
+                  <strong>
+                    <%= inca_subscription_customer_full_name(inca_subscription) %>
+                  </strong>
+                </td>
+                <td>
+                  <strong>
+                    <%= inca_subscription.customer_fiscal_code %>
+                  </strong>
+                </td>
+                <td><%= number_to_currency(inca_subscription.payment) %></td>
+                <td><%= truncate(inca_subscription.note, length: 35) %></td>
+                <td>
+                  <% unless current_user.institute == 'Ufficio Amministrazione' %>
+                    <% unless inca_subscription.cancellation %>
+                      <%= link_to edit_inca_subscription_path(inca_subscription), title: 'Modifica la Ricevuta', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+                        <i class='fas fa-edit'></i>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+                  <% unless inca_subscription.pdf.attached? %>
+                    &emsp;
+                    <%= link_to inca_subscription_path(inca_subscription, format: 'pdf'), target: :_blank, title: 'Stampa la Ricevuta in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+                      <i class='fas fa-file-pdf'></i>
+                    <% end %>
+                  <% end %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+      </div>
+    </div>
+    <br>
+  </div>
+</div>
+<div class='d-flex justify-content-center'>
+  <%= will_paginate @inca_subscriptions, renderer: WillPaginate::ActionView::BootstrapLinkRenderer %>
+</div>
+<br/>

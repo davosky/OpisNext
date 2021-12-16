@@ -1,0 +1,5 @@
+<% if @inca_subscription.cancellation %>
+  <%= render 'show_cancelled' %>
+<% else %>
+  <%= render 'show_valid' %>
+<% end %>

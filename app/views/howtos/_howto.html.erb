@@ -1,0 +1,20 @@
+<%= content_tag :card, id: dom_id(howto), class: 'card m-2 shadow' do %>
+  <div class='card-body'>
+    <div class='row'>
+      <div class='col'>
+        <i class='fas fa-book'></i>&nbsp;
+        <%= link_to howto.title, howto, class: 'text-secondary' %>
+      </div>
+      <div class='col'>
+        <i class='fas fa-book-open'></i>&nbsp;
+        <%= howto.topic %>
+      </div>
+    </div>
+    <div class='row'>
+      <div class='col'>
+        <hr/>
+        <%= howto.description.truncate(300) %>
+      </div>
+    </div>
+  </div>
+<% end %>

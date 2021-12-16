@@ -1,0 +1,649 @@
+<div class='col-9'>
+  <%= form_with(model: inca_subscription) do |form| %>
+    <% if inca_subscription.errors.any? %>
+      <div id='error_explanation'>
+        <h2 class='text-primary'>
+          <strong>
+            <%= pluralize(inca_subscription.errors.count, 'Errori') %>
+            &emsp;
+            Non posso salvare la Sottoscrizione corrente:
+          </strong>
+        </h2>
+        <ul>
+          <% inca_subscription.errors.each do |error| %>
+            <li class='text-primary'><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+    <div class='card shadow m-1'>
+      <div class='card body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-credit-card'></i>
+            &nbsp;
+            Tesseramento
+          </span>
+        </strong>
+        <hr/>
+        <div class='col-6'>
+          <div class='input-group p-1'>
+            <div class='input-group-prepend '>
+              <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                <i class='fas fa-question text-primary'></i>
+                &nbsp;
+                <i class='far fa-address-card text-primary'></i>
+                &nbsp;
+                Tipo Iscrizione:&nbsp;
+              </div>
+            </div>
+            <%= form.collection_select(:subscription_typology_id, SubscriptionTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-id-card'></i>
+            &nbsp;
+            Anagrafica
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-user text-primary'></i>
+                  &nbsp;
+                  Nome:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_name, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-user text-primary'></i>
+                  &nbsp;
+                  Cognome:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_forname, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-mars text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-venus text-primary'></i>
+                  &nbsp;
+                  Sesso:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:sex_id, Sex.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-globe-europe text-primary'></i>
+                  &nbsp;
+                  Luogo di Nascita:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_birth_place, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-calendar text-primary'></i>
+                  &nbsp;
+                  Data di Nascita:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_birth_date, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-id-card text-primary'></i>
+                  &nbsp;
+                  Codice Fiscale:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_fiscal_code, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-flag text-primary'></i>
+                  &nbsp;
+                  Cittadinanza:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_nationality, class:'form-control' %>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-map-marker-alt text-primary'></i>
+                  &nbsp;
+                  Indirizzo:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_address, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fa fa-envelope text-primary'></i>
+                  &nbsp;
+                  Cap:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_zip, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-city text-primary'></i>
+                  &nbsp;
+                  Comune:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_city, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-map-marked-alt text-primary'></i>
+                  &nbsp;
+                  Provincia:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_province, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-phone'></i>
+                  &nbsp;
+                  Telefono:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_phone, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-mobile-alt'></i>
+                  &nbsp;
+                  Cellulare:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_mobile, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-at'></i>
+                  &nbsp;
+                  E-Mail:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :customer_email, class:'form-control' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-industry'></i>
+            &nbsp;
+            Aziendale
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-industry'></i>
+                  &nbsp;
+                  Ragione Sociale:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_name, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-credit-card'></i>
+                  &nbsp;
+                  P.IVA:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_vat_number, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-credit-card'></i>
+                  &nbsp;
+                  C.F.:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_fiscal_code, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question'></i>
+                  &nbsp;
+                  <i class='fas fa-industry'></i>
+                  &nbsp;
+                  Tipo Azienda:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:company_typology_id, CompanyTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-map-marker-alt'></i>
+                  &nbsp;
+                  Indirizzo:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_address, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fa fa-envelope'></i>
+                  &nbsp;
+                  Cap:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_zip, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-city'></i>
+                  &nbsp;
+                  Comune:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_city, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-map-marked-alt'></i>
+                  &nbsp;
+                  Provincia:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :company_province, class:'form-control' %>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question'></i>
+                  &nbsp;
+                  <i class='fas fa-user-tie'></i>
+                  &nbsp;
+                  Qualifica:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:work_qualify_id, WorkQualify.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question'></i>
+                  &nbsp;
+                  <i class='fas fa-user-tag'></i>
+                  &nbsp;
+                  Livello:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:work_level_id, WorkLevel.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-file-contract'></i>
+                  &nbsp;
+                  Contratto:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :work_contract, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question'></i>
+                  &nbsp;
+                  <i class='fas fa-user-tag'></i>
+                  &nbsp;
+                  Tipo Lavoro:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:work_worker_id, WorkWorker.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-calendar'></i>
+                  &nbsp;
+                  Data Assunzione:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :work_employee_date, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-city'></i>
+                  &nbsp;
+                  Luogo di Lavoro:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :work_workplace, class:'form-control' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-euro-sign'></i>
+            &nbsp;
+            Amministrativo
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-euro-sign text-primary'></i>
+                  &nbsp;
+                  Importo:&nbsp;
+                </div>
+              </div>
+              <%= form.text_field :payment, class:'form-control' %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-euro-sign text-primary'></i>
+                  &nbsp;
+                  Tipo Pagamento:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:payment_typology_id, PaymentTypology.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-clone text-primary'></i>
+                  &nbsp;
+                  Categoria:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:category_id, Category.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-calendar-week text-primary'></i>
+                  &nbsp;
+                  Anno Iscrizione:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:subscription_year_id, SubscriptionYear.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-euro-sign'></i>
+            &nbsp;
+            Attivazione
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='far fa-file-alt text-primary'></i>
+                  &nbsp;
+                  Tipo Pratica:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:inca_practise_id, IncaPractise.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+          </div>
+          <div class='col-6'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-building text-primary'></i>
+                  &nbsp;
+                  Ufficio:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:inca_office_id, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-user-secret'></i>
+            &nbsp;
+            Privacy
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-4'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-user-secret text-primary'></i>
+                  &nbsp;
+                  Privacy 1:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:privacy_one_id, PrivacyOne.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <p class='text-justify'>
+              Datore di Lavoro - Enti Previdenziali ed Assistenziali - Enti Bilaterali - Enti Paritetici Contrattuali - Articolazioni Sindacali 
+            </p>
+          </div>
+          <div class='col-4'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-user-secret text-primary'></i>
+                  &nbsp;
+                  Privacy 2:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:privacy_two_id, PrivacyTwo.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <p class='text-justify'>
+              Istituzionale Promozionale - a mezzo di strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di comunicazione elettronica (WhatsApp, Telegram, ecc.) 
+            </p>
+          </div>
+          <div class='col-4'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='fas fa-question text-primary'></i>
+                  &nbsp;
+                  <i class='fas fa-user-secret text-primary'></i>
+                  &nbsp;
+                  Privacy 3:&nbsp;
+                </div>
+              </div>
+              <%= form.collection_select(:privacy_three_id, PrivacyThree.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+            </div>
+            <p class='text-justify'>
+              Patronato Inca, ai CAAF CGIL SRL costituiti dalla CGIL, al Sunia, all’Auser e alla Federconsumatori ecc. - a mezzo di strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di comunicazione elettronica (WhatsApp, Telegram, ecc.) 
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <strong>
+          &emsp;
+          <span class='text-info'>
+            <i class='fas fa-clipboard'></i>
+            &nbsp;
+            Note
+          </span>
+        </strong>
+        <hr/>
+        <div class='row'>
+          <div class='col-12'>
+            <div class='input-group p-1'>
+              <div class='input-group-prepend '>
+                <div class='input-group-text input-group-text-form igp-fixed-width-short'>
+                  <i class='far fa-clipboard'></i>
+                  &nbsp;
+                  Note:&nbsp;
+                </div>
+              </div>
+              <%= form.text_area :note, class:'form-control' %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class='card shadow m-1'>
+      <div class='card-body p-2'>
+        <div class='row'>
+          <div class='col-12'>
+            <% if !current_page?(new_inca_subscription_url) && !@inca_subscription.pdf.attached? %>
+              <div class='input-group p-1'>
+                <div class='input-group-prepend '>
+                  <div class='input-group-text input-group-text-form text-primary'>
+                    <i class='fas fa-file-pdf'></i>
+                    &nbsp;
+                    Allega la Ricevuta in formato PDF:&nbsp;
+                  </div>
+                </div>
+                <%= form.file_field :pdf, class:'form-control' %>
+              </div>
+            <% end %>
+            <span class='float-right p-2'>
+              <%= link_to inca_subscriptions_path, class: 'btn btn-sm btn-outline-primary'  do %>
+                <i class='fas fa-undo'></i>
+                &emsp;
+                <strong>Annulla</strong>
+              <% end %>
+              &emsp;
+              <%= button_tag(type: 'submit', class: 'btn btn-outline-primary btn-sm') do %>
+                <strong>
+                  <i class='fas fa-save'></i>
+                  &emsp;
+                  <% if current_page?(new_inca_subscription_path) %>
+                    <strong>Salva</strong>
+                  <% else %>
+                    <strong>Aggiorna</strong>
+                  <% end %>
+                </strong>
+              <% end %>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+    <br/>
+  <% end %>
+</div>
+<div class='col-3'>
+  <h4>
+    <i class='fas fa-list'></i>
+    &nbsp;
+    <i class='fas fa-euro-sign'></i>
+    &emsp;
+    Tariffario
+  </h4>
+  <table class='table table-striped table-hover'>
+    <thead class='tariff-font'>
+      <tr>
+        <th>Categoria:</th>
+        <th>Tipologia:</th>
+        <th>Tariffa:</th>
+      </tr>
+    </thead>
+    <tbody class='tariff-font'>
+      <% @tariffs.each do |tariff| %>
+        <tr>
+          <td>
+            <%= tariff.category.name %>
+          </td>
+          <td>
+            <%= tariff.typology %>
+          </td>
+          <td>
+            <%= number_to_currency(tariff.amount) %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

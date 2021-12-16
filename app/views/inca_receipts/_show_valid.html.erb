@@ -1,0 +1,151 @@
+<div class='col-lg-12'>
+  <h3 class='text-primary p-2'>
+    <i class='fas fa-receipt'></i>
+    &emsp;
+    Ricevuta Liberalit&agrave; INCA
+    &emsp;
+    <strong>
+      &emsp; Numero:&nbsp;<%= @inca_receipt.name %>
+      &emsp; Del:&nbsp;<%= l(@inca_receipt.date) %>
+    </strong>
+    <span class='float-right'>
+      <%= link_to inca_receipts_path, class: 'btn btn-sm btn-outline-primary' do %>
+        <i class='fas fa-arrow-left'></i>
+        &nbsp;
+        <i class='fas fa-receipt'></i>
+        &emsp;
+        <strong>Ritorna alla lista</strong>
+      <% end %>
+    </span>
+  </h3>
+  <hr class='hr-primary p-2'/>
+  <div class='card'>
+    <div class='card-body shadow'>
+      <div class='row p-1'>
+        <div class='col-3'>
+          Operatore:
+          &nbsp;
+          <strong>
+            <%= @inca_receipt.user.name %>
+          </strong>
+        </div>
+        <div class='col-3'>
+          Istituto:
+          &nbsp;
+          <strong>
+            <%= @inca_receipt.institute %>
+          </strong>
+        </div>
+        <div class='col-6'>
+          Ufficio:
+          &nbsp;
+          <strong>
+            <%= @inca_receipt.inca_office.name %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-6'>
+          Tipo Pagamento:
+          &emsp;
+          <strong class='text-primary'>
+            <%= @inca_receipt.payment_typology.name %>
+          </strong>
+          &emsp;
+          Ammontare:
+          &emsp;
+          <strong class='text-primary'>
+            <%= number_to_currency(@inca_receipt.payment) %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Nome:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_name %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Cognome:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_forname %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Codice Fiscale:
+          &emsp;
+          <strong class='text-primary'>
+            <%= @inca_receipt.customer_fiscal_code %>
+          </strong>
+        </div>
+      </div>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Luogo di Nascita:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_birth_place %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Data di Nascita:
+          &emsp;
+          <strong>
+            <%= l(@inca_receipt.customer_birth_date) %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Indirizzo:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_address %>
+          </strong>
+        </div>
+      </div>
+      <div class='row p-1'>
+        <div class='col-4'>
+          Cap:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_zip %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Comune:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_city %>
+          </strong>
+        </div>
+        <div class='col-4'>
+          Provincia:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.customer_province %>
+          </strong>
+        </div>
+      </div>
+      <hr/>
+      <div class='row p-1'>
+        <div class='col'>
+          Note:
+          &emsp;
+          <strong>
+            <%= @inca_receipt.note %>
+          </strong>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br/>
+  <% unless !@inca_receipt.pdf.attached? %>
+    <div class='col-12 text-center'>
+      <iframe src=<%= url_for(@inca_receipt.pdf) %> width='975' height='1400' style='border: none'></iframe>
+    </div>
+  <% end %>
+</div>

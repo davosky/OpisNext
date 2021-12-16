@@ -1,0 +1,91 @@
+<div class='row'>
+  <div class='col-12'>
+    <h3 class='text-primary p-2'>
+      <i class='fas fa-download'></i>
+      &nbsp;
+      <i class='fas fa-id-card'></i>
+      &emsp;
+      <strong>
+        Scarico Sottoscrizioni INCA per NIDIL
+      </strong>
+    </h3>
+    <hr class='hr-primary p-2'/>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-12'>
+    <%= search_form_for @q, id: 'search-form', url: billdownloadnidil_inca_subscriptions_path do |form| %>
+      <div class='input-group p-1'>
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='far fa-calendar'></i>
+            &nbsp;
+            Data Inizio:&nbsp;
+          </div>
+        </div>
+        <%= form.text_field :date_gteq, class:'form-control' %>
+        &emsp;
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='far fa-calendar'></i>
+            &nbsp;
+            Data Fine:&nbsp;
+          </div>
+        </div>
+        <%= form.text_field :date_lteq, class:'form-control' %>
+        &emsp;
+        <div class='input-group-prepend'>
+          <div class='input-group-text input-group-text-form'>
+            <i class='fas fa-building'></i>
+            &nbsp;
+            Ufficio:&nbsp;
+          </div>
+        </div>
+        <%= form.collection_select(:inca_office_id_eq, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+        &emsp;
+        <%= button_tag type: 'submit', class: 'btn btn-primary', title: 'Cerca', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+          <i class='fas fa-search'></i>
+        <% end %>
+        &nbsp;
+        <% if @inca_subscriptions.count > 0 %>
+          &nbsp;
+          <%= link_to billdownloadnidil_inca_subscriptions_path(request.parameters.merge(format: 'pdf')), class: 'btn btn-outline-primary', target: :_blank, title: 'Stampa in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+            <i class='fas fa-print'></i>
+          <% end %>
+          &nbsp;
+          <%= link_to billdownloadnidil_inca_subscriptions_path(request.parameters.merge(format: 'xlsx')), class: 'btn btn-outline-primary', target: :_blank, title: 'Esporta in Excel', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+            <i class='fas fa-table'></i>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+</div>
+<br/>
+<table class='table table-borderless table-striped'>
+  <thead>
+    <tr>
+      <th scope='col'class='text-primary'>Numero</th>
+      <th scope='col'class='text-primary'>Data</th>
+      <th scope='col'class='text-primary'>Nome</th>
+      <th scope='col'class='text-primary'>Cognome</th>
+      <th scope='col'class='text-primary'>Codice Fiscale</th>
+      <th scope='col'class='text-primary'>Ufficio</th>
+      <th scope='col'class='text-primary'>Operatore</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @inca_subscriptions.each do |inca_sunscription| %>
+      <tr>
+        <th scope='row'><%= inca_sunscription.name %></th>
+        <td><%= l(inca_sunscription.date) %></td>
+        <td><%= inca_sunscription.customer_name %></td>
+        <td><%= inca_sunscription.customer_forname %></td>
+        <td><%= inca_sunscription.customer_fiscal_code %></td>
+        <td><%= inca_sunscription.inca_office.name %></td>
+        <td><%= inca_sunscription.user.name %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<br/>

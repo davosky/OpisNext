@@ -1,0 +1,20 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: OpisNext
+  password: Dfr368qE
+  host: localhost
+
+development:
+  <<: *default
+  database: OpisNext_development
+
+test:
+  <<: *default
+  database: OpisNext_test
+
+production:
+  <<: *default
+  database: OpisNext_production
+

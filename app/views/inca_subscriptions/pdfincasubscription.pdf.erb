@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang='en'>
+  <head>
+    <meta charset='UTF-8'/>
+    <meta http-equiv='X-UA-Compatible' content='IE=edge'/>
+    <meta name='viewport' content='width=device-width, initial-scale=1.0'/>
+    <%= stylesheet_link_tag wicked_pdf_asset_base64('pdfincasubscription') %>
+  </head>
+  <body>
+    <div class='page'>
+      <div class='row'>
+        <div class='col col-12 text-center'>
+          <%= inline_svg('header_ricevuta_inca.svg', size: '170mm * 15mm', preserve_aspect_ratio: 'xMaxYMax meet') %>
+          <hr>
+        </div>
+        <div class='row'>
+          <h3 class='centertext'>
+            <strong>SCHEDA RILEVAZIONE DATI SOTTOSCRITTORI - CATEGORIA&nbsp;<%= @inca_subscription.category.name %></strong>
+          </h3>
+          <p class='centertext'>
+            SOTTOSCRIZIONE N°&nbsp;<%= @inca_subscription.name %>&nbsp;del:&nbsp;<%= l(@inca_subscription.date) %>
+            &emsp;
+            <% if @inca_subscription.subscription_typology.name == 'NUOVA ISCRIZIONE' %>
+              <%= @inca_subscription.subscription_typology.name %>
+            <% elsif @inca_subscription.subscription_typology.name == 'RINNOVO' %>
+              <%= @inca_subscription.subscription_typology.name %>
+            <% else %>
+              <i class='fas fa-th text-primary'></i>
+              &emsp;
+              <%= @inca_subscription.subscription_typology.name %>
+            <% end %>
+          </p>
+        </div>
+        <hr>
+      </div>
+      <div class='row'>
+        <div class='div-left'>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  Nome:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_name %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Cognome:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_forname %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Sesso:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.sex.name %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Nato a:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_birth_place %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Nato il:
+                </td>
+                <td>
+                  <strong>
+                    <%= l(@inca_subscription.customer_birth_date) %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Codice Fiscale:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_fiscal_code %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Cittadinanza:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_nationality %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Indirizzo:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_address %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Cap:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_zip %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Comune:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_city %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Provincia:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_province %>
+                  </strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='div-right'>
+          <table>
+            <tbody>
+              <tr>
+                <td>
+                  Telefono:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_phone %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  Cellulare:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_mobile %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>
+                  E-Mail:
+                </td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.customer_email %>
+                  </strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr/>
+      <div class='row'>
+        <div class='div-left'>
+          <table>
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>Azienda:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_name %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Tipologia:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_typology.name if @inca_subscription.company_typology_id.present? %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Indirizzo:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_address %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Cap:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_zip %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Comune:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_city %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Provincia:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_province %>
+                  </strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <div class='div-right'>
+          <table>
+            <thead></thead>
+            <tbody>
+              <tr>
+                <td>Tipo Lavoro:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.work_worker.name if @inca_subscription.work_worker_id.present? %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Qualifica:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.work_qualify.name if @inca_subscription.work_qualify_id.present? %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Livello:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.work_level.name if @inca_subscription.work_level_id.present? %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Contratto:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.work_contract %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>data Assunzione:</td>
+                <td>
+                  <strong>
+                    <%= l(@inca_subscription.work_employee_date) if @inca_subscription.work_employee_date.present? %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Sede lavorativa:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.work_workplace %>
+                  </strong>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+      <hr/>
+      <div class='row'>
+        <div class='centertext'>
+          <br>
+          <strong>
+            Ha versato:&nbsp;<%= number_to_currency(@inca_subscription.payment) %>
+            &nbsp;per la Categoria:&nbsp;<%= @inca_subscription.category.name %>
+            &nbsp;in data:&nbsp;<%= l(@inca_subscription.date) %>
+          </strong>
+          <br>
+          <br>
+          <br>
+          <br>
+          Firma del Lavoratore: ____________________________________
+          <br>
+          <br>
+          <br>
+          <br>
+          <small>
+            Sottoscrizione raccolta da:&nbsp;<%= @inca_subscription.institute %>
+            &nbsp;<%= @inca_subscription.inca_office.name %>
+            &nbsp;operatore:&nbsp;<%= @inca_subscription.user.name %>
+          </small>
+        </div>
+      </div>
+      <div class='row'>
+        <div class='div'>
+          <p class='centertext'>
+            <strong>
+              Consenso al trattamento dei dati personali
+            </strong>
+          </p>
+          <p class='smalltext'>
+            1. Io sottoscritto, lette le informazioni di cui all’art. 13 del Regolamento UE 2016/679 e consapevole
+            che il trattamento dei dati, anche sensibili, nell’ambito del sindacato non richiede il consenso dell’interessato, <br>
+            presto il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_one_id == 1 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;
+            nego il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_one_id == 2 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            <br>
+            alla comunicazione dei miei dati comuni e particolari ai soggetti indicati nell’informativa, ovvero al
+            datore di lavoro nonché agli enti previdenziali ed assistenziali, agli enti bilaterali ed enti paritetici
+            contrattuali e, comunque, a tutte le articolazioni sindacali, nei limiti in cui la comunicazione sia
+            essenziale per l’adempimento degli scopi statutari e degli obblighi stabiliti dalla normativa vigente.
+            <br>
+            <br>
+            2. In relazione alla predetta informativa, prendendo atto che la prestazione del consenso per attività
+            estranee alla tutela del lavoratore o del pensionato non è obbligatoria e che, in caso di rifiuto, non riceverei alcun pregiudizio,
+            <br>
+            presto il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_two_id == 1 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;
+            nego il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_two_id == 2 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            <br>
+            al trattamento dei miei dati per finalità di informativa istituzionale e/o promozionale da parte del
+            sindacato e dei co-titolari del trattamento come individuati nell’informativa, anche a mezzo di
+            strumenti tecnologici avanzati quali fax, Email, SMS, MMS e altri sistemi di comunicazione elettronica (WhatsApp, Telegram, ecc.).
+            <br>
+            <br>
+            3. In relazione alla informativa di cui sopra, inoltre, e nella consapevolezza che la prestazione del
+            consenso alla comunicazione dei dati per attività estranee alla tutela sindacale, se pur previste dallo
+            Statuto, non è obbligatoria e che, in caso di rifiuto, non riceverei alcun pregiudizio,
+            <br>
+            presto il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_three_id == 1 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            &nbsp;&nbsp;&nbsp;
+            nego il mio consenso&nbsp;
+            <% if @inca_subscription.privacy_three_id == 2 %>
+              &nbsp;<%= inline_svg('check_yes.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% else %>
+              &nbsp;<%= inline_svg('check_no.svg', size: '11pt * 11pt', preserve_aspect_ratio: 'xMaxYMax meet') %>
+            <% end %>
+            <br>
+            alla comunicazione e al successivo trattamento dei miei dati personali comuni e particolari al Patronato Inca,
+            ai CAAF CGIL SRL costituiti dalla CGIL, al Sunia, all’Auser e alla Federconsumatori e, comunque, agli enti e
+            alle persone giuridiche con o senza scopo di lucro delle quali si avvale l’associazione sindacale per il
+            perseguimento dei propri scopi statutari o, comunque, con essa convenzionate o affiliate, o da essa
+            costituiti e/o promossi, ivi compresi i professionisti legali, fiscali e/o contabili incaricati di tutelarmi
+            in sede amministrativa e/o giurisdizionale, anche affinché tali soggetti possano trattare tali dati per
+            finalità promozionali, allo scopo di informarmi sui loro servizi di assistenza e tutela a mezzo posta cartacea
+            e di strumenti tecnologici avanzati quali fax, SMS, MMS e Email e altri sistemi di comunicazione elettronica (WhatsApp, Telegram, ecc.).
+            <br>
+            <br>
+            <br>
+            <br>
+            <strong>Luogo e data:</strong> <%= @inca_subscription.inca_office.name %>&nbsp;-&nbsp;<%= @inca_subscription.date.strftime('%d/%m/%Y') %>&nbsp;&nbsp;&nbsp;<strong>Firma:</strong> _____________________________
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class='page'>
+      <div class='row'>
+        <div>
+          <h2>
+            Informativa sul trattamento dei dati personali
+          </h2>
+          <br/>
+          <p class='smalltext'>
+            Egregio Sig.ra/Sig.,
+            in ottemperanza agli obblighi di cui all’art. 13 del Regolamento UE 2016/679 la Confederazione Generale
+            Italiana del Lavoro (di seguito “CGIL”, “titolare” o “sindacato”) con la presente intende evidenziarLe
+            le ragioni per le quali procede al trattamento dei dati personali e metterLa al corrente delle diverse
+            possibilità riconosciute per intervenire sullo stesso affinché non subisca una lesione alle libertà
+            fondamentali, che devono essere contemperate con l’esplicazione della libertà sindacale.
+          </p>
+          <br/>
+          <strong>
+            1. Finalità, modalità e base giuridica del trattamento dei dati personali.
+          </strong>
+          <br>
+          <p class='smalltext'>
+            La CGIL, all’atto della richiesta di iscrizione e/o al primo contatto con la stessa per qualsiasi finalità,
+            e comunque successivamente, nel corso dei successivi contatti, acquisisce direttamente da Lei, dai Suoi
+            familiari, dal Suo datore di lavoro e/o dal Suo ente previdenziale e/o assistenziale, dati relativi alla
+            Sua persona, sia comuni sia particolari (per dati “particolari” si intendono, per quanto qui interessa,
+            le informazioni relative all’origine razziale o etnica, convinzioni religiose, opinioni politiche, adesione
+            a sindacati, partiti o associazioni, salute, vita od orientamento sessuale, condanne penali e/o i dati biometrici)
+            per trattarli allo scopo di adempiere agli obblighi sindacali e, comunque, nell’ambito dell’attività
+            sindacale per il perseguimento delle sue finalità statutarie e, comunque, per adempiere a specifici obblighi
+            legislativi, anche di natura contabile e/o fiscale.
+          </p>
+          <p class='smalltext'>
+            Il sindacato, previo Suo consenso, tratterà i dati forniti anche per consentire l’erogazione in Suo favore
+            di altri servizi connessi alla tutela in ambito lavorativo, fiscale, contabile, previdenziale ed
+            assistenziale nonché per inviarLe informative istituzionali sulla propria attività e su quella degli enti,
+            con o senza scopo di lucro, istituiti, costituiti o promossi dal sindacato per il perseguito delle medesime finalità.
+          </p>
+          <p class='smalltext'>
+            I dati saranno trattati nel rispetto degli obblighi di sicurezza e riservatezza mediante strumenti
+            automatizzati e cartacei, secondo quanto consentito espressamente dalla legge (art. 9, par. 1, lett.
+            D, del Reg. UE) a prescindere dal consenso dell’iscritto che, invece, verrà richiesto esclusivamente
+            per il trattamento dei dati per i quali è prevista la comunicazione degli stessi al di fuori
+            dell’organizzazione sindacale. In parte il trattamento verrà svolto per adempiere a finalità di
+            interesse pubblico rilevante, quantomeno laddove il trattamento, o parte dello stesso, sia svolto
+            in adempimento di obblighi di legge.
+          </p>
+          <p class='smalltext'>
+            La normativa vigente, infatti, consente il solo trattamento dei dati all’interno dell’associazione
+            sindacale per finalità strettamente connesse all’adempimento delle finalità statutarie, così che
+            il trattamento dei dati per le altre finalità sopra descritte, pur previste dallo Statuto, e la
+            loro comunicazione, possono avvenire sulla base di obblighi di legge ovvero sulla base del consenso
+            dall’iscritto che, pur richiesto, potrà essere liberamente negato e, in tal caso, tale diniego non
+            porterà alcuna conseguenza sull’iscrizione sindacale.
+          </p>
+          <p class='smalltext'>
+            <strong>
+              2. Natura del conferimento dei dati e durata del trattamento.
+            </strong>
+            <br>
+            Il conferimento dei dati richiesti è assolutamente facoltativo. Qualora l’interessato rifiuti
+            di conferire i dati anagrafici sarebbe impossibile perfezionare l’iscrizione al sindacato e/o
+            svolgere l’attività per la quale l’interessato si è rivolto alla CGIL; laddove, invece, rifiuti
+            di fornire altri dati non essenziali per l’iscrizione o per l’attività, potrebbe essere
+            impossibile o particolarmente difficoltoso garantire all’iscritto il corretto perseguimento
+            delle finalità sindacali o istituzionali.
+          </p>
+          <p class='smalltext'>
+            I dati saranno comunque trattati per il tempo strettamente necessario all’adempimento delle predette
+            finalità sindacali (normalmente coincidente con il periodo di iscrizione dell’interessato al sindacato) e,
+            comunque, per i trattamenti subordinati al consenso, sino a quando l’interessato non lo revocherà.
+          </p>
+          <p class='smalltext'>
+            I dati, tuttavia, laddove trattati per l’attività sindacale, verranno cancellati decorsi dieci anni
+            dalla risoluzione del rapporto associativo, mentre, se trattati per lo svolgimento delle finalità
+            previste dal consenso eventualmente prestato, verranno cancellati decorsi sei mesi dall’esercizio
+            del diritto di revoca del consenso.
+          </p>
+          <p class='smalltext'>
+            <strong>
+              3. Ambito di comunicazione e diffusione dei dati.
+            </strong>
+            <br>
+            Al fine di adempiere correttamente alla tutela sindacale, e comunque per il corretto esercizio della
+            libertà sindacale e per la tutela dell’iscritto a termini di Statuto, i Suoi dati potrebbero essere
+            trasmessi e comunicati, esclusivamente previo Suo consenso, ad altri soggetti quali, in particolare,
+            il Suo datore di lavoro o ente pensionistico, ente bilaterale o enti paritetici contrattuali. I Suoi
+            dati potrebbero inoltre essere comunicati ai soggetti ai quali la normativa vigente prevede la
+            comunicazione quali, a mero titolo esemplificativo, le CCIAA.
+          </p>
+          <p class='smalltext'>
+            I dati stessi potrebbero inoltre essere comunicati, per consentirLe di usufruire dei servizi offerti,
+            o comunque per essere informato sui medesimi servizi, al Patronato Inca e ai CAAF CGIL SRL costituiti
+            dal sindacato, all’AUSER, al SUNIA o alla Federconsumatori, associazioni costituite o promosse dalla
+            CGIL o, comunque, a enti o persone giuridiche con o senza scopo di lucro, costituiti o promossi dalla
+            CGIL nonché a liberi professionisti dei quali il sindacato si avvale per il perseguimento dei propri scopi.
+          </p>
+          <p class='smalltext'>
+            I Suoi dati personali saranno inoltre resi noti a tutti i soggetti, siano essi persone fisiche o
+            giuridiche, espressamente autorizzate al trattamento o designate quali responsabili del trattamento,
+            come tali tenuti agli stessi obblighi di riservatezza che competono al sindacato e, comunque,
+            espressamente istruiti sull’osservanza delle norme di sicurezza. I dati saranno inoltre resi noti,
+            laddove non ne siano già a conoscenza, agli altri co-titolari del trattamento, quali le federazioni
+            nazionali, regionali o territoriali della CGIL, i cui riferimenti potrà reperire accedendo
+            al sito www.cgil.it/sedi/. I suoi dati personali non saranno in nessun caso diffusi né trasferiti verso Paesi terzi.
+          </p>
+          <p class='smalltext'>
+            <strong>
+              4. Diritti riconosciuti 
+            </strong>
+            <br>
+            La CGIL Le assicura l’esercizio dei diritti previsti dalla normativa vigente quali, in particolare, il
+            diritto di accesso e, nei casi previsti, di modifica, cancellazione e portabilità dei dati. Lei gode
+            altresì del diritto di chiedere la limitazione del trattamento, opporsi allo stesso e/o revocare il
+            consenso sul quale il trattamento si fondi, fermo restando la legittimità del trattamento
+            effettuato prima della revoca stessa.
+          </p>
+          <p class='smalltext'>
+            La legge attribuisce inoltre all’interessato il potere di proporre reclamo o segnalazione al
+            Garante per la protezione dei dati, ovvero all’autorità di controllo dello Stato UE in cui
+            risiede, in cui lavora o in cui è avvenuta la violazione. Per l’esercizio di tale facoltà
+            l’interessato può reperire ogni informazione utile nel sito www.garanteprivacy.it.
+          </p>
+          <p class='smalltext'>
+            I predetti diritti possono essere esercitati direttamente al sindacato, ai dati di contatto
+            sotto indicati al punto 5, alle strutture territoriali della CGIL, che può reperire nel sito
+            internet www.cgil.it/sedi/, oppure al Responsabile per la Protezione dei dati designato.
+          </p>
+          <p class='smalltext'>
+            <strong>
+              5. Titolare del trattamento. Data Protection Officer.  
+            </strong>
+            <br>
+            La CGIL, con sede a Roma in Corso d’Italia n. 25 (Tel: 06.847.61 - Fax: 06.884.56.83) è il
+            titolare del trattamento dei dati personali degli iscritti e dei soggetti che hanno contatti
+            regolari con lo stesso e la categoria sindacale di riferimento. La categoria alla quale si è
+            iscritto o con la quale ha contatti regolari è, unitamente alla CGIL, co-titolare del
+            trattamento dei dati personali, così come lo sono le relative categorie regionali e
+            territoriali, nonché le altre associazioni confederali di riferimento quali la CGIL regionale
+            e la Camera del Lavoro. I dati di contatto degli altri co-titolari del trattamento possono
+            essere reperiti sul sito http://www.cgil.it/sedi/.
+          </p>
+          <p class='smalltext'>
+            La CGIL, e gli altri co-titolari, hanno designato il Responsabile per la Protezione dei
+            Dati che potrà essere contattato tramite email all’indirizzo privacy@cgil.it.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

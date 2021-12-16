@@ -1,0 +1,36 @@
+<div class='col-lg-12'>
+  <h3 class='text-primary p-2'>
+    <i class='fas fa-receipt'></i>
+    &emsp;
+    Ricevuta Liberalit&agrave; INCA
+    &emsp;
+    <strong>
+      &emsp; Numero:&nbsp;<%= @inca_receipt.name %>
+      &emsp; Del:&nbsp;<%= l(@inca_receipt.date) %>
+    </strong>
+    <span class='float-right'>
+      <%= link_to inca_receipts_path, class: 'btn btn-sm btn-outline-primary' do %>
+        <i class='fas fa-arrow-left'></i>
+        &nbsp;
+        <i class='fas fa-receipt'></i>
+        &emsp;
+        <strong>Ritorna alla lista</strong>
+      <% end %>
+    </span>
+  </h3>
+  <hr class='hr-primary p-2'/>
+  <div class='card'>
+    <div class='card-body text-white text-center bg-primary p-3 shadow'>
+      <h3>
+        Questa Ricevuta &egrave; stata ANNULLATA
+      </h3>
+      <br/>
+      per il seguente motivo:
+      <br/>
+      <br/>
+      <strong>
+        <%= @inca_receipt.cancellation_reason %>
+      </strong>
+    </div>
+    <br/>
+  </div>
