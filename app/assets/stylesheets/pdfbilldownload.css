@@ -97,6 +97,12 @@ td.red {
   font-family: Tahoma, Helvetica, sans-serif;
 }
 
+#smallandliteleft {
+  text-align: left;
+  font-size: 6pt;
+  font-family: Tahoma, Helvetica, sans-serif;
+}
+
 #footer {
   color: #5D6975;
   width: 100%;
