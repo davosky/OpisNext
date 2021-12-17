@@ -77,13 +77,13 @@
   <tbody>
     <% @inca_subscriptions.each do |inca_sunscription| %>
       <tr>
-        <th scope='row'><%= inca_sunscription.name %></th>
-        <td><%= l(inca_sunscription.date) %></td>
-        <td><%= inca_sunscription.customer_name %></td>
-        <td><%= inca_sunscription.customer_forname %></td>
-        <td><%= inca_sunscription.customer_fiscal_code %></td>
-        <td><%= inca_sunscription.inca_office.name %></td>
-        <td><%= inca_sunscription.user.name %></td>
+        <th scope='row' class='condensedfont'><%= inca_sunscription.name %></th>
+        <td class='condensedfont'><%= l(inca_sunscription.date) %></td>
+        <td class='condensedfont'><%= inca_sunscription.customer_name %></td>
+        <td class='condensedfont'><%= inca_sunscription.customer_forname %></td>
+        <td class='condensedfont'><%= inca_sunscription.customer_fiscal_code %></td>
+        <td class='condensedfont'><%= inca_sunscription.inca_office.name %></td>
+        <td class='condensedfont'><%= inca_sunscription.user.name %></td>
       </tr>
     <% end %>
   </tbody>

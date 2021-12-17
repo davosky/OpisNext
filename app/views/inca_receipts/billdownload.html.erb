@@ -71,13 +71,13 @@
   <tbody>
     <% @inca_receipts.each do |inca_receipt| %>
       <tr>
-        <th scope='row'><%= inca_receipt.name %></th>
-        <td><%= l(inca_receipt.date) %></td>
-        <td><%= inca_receipt.customer_name %></td>
-        <td><%= inca_receipt.customer_forname %></td>
-        <td><%= inca_receipt.customer_fiscal_code %></td>
-        <td><%= inca_receipt.inca_office.name %></td>
-        <td><%= inca_receipt.user.name %></td>
+        <th scope='row' class='condensedfont'><%= inca_receipt.name %></th>
+        <td class='condensedfont'><%= l(inca_receipt.date) %></td>
+        <td class='condensedfont'><%= inca_receipt.customer_name %></td>
+        <td class='condensedfont'><%= inca_receipt.customer_forname %></td>
+        <td class='condensedfont'><%= inca_receipt.customer_fiscal_code %></td>
+        <td class='condensedfont'><%= inca_receipt.inca_office.name %></td>
+        <td class='condensedfont'><%= inca_receipt.user.name %></td>
       </tr>
     <% end %>
   </tbody>

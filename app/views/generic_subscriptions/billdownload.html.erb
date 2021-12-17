@@ -77,13 +77,13 @@
   <tbody>
     <% @generic_subscriptions.each do |generic_sunscription| %>
       <tr>
-        <th scope='row'><%= generic_sunscription.name %></th>
-        <td><%= l(generic_sunscription.date) %></td>
-        <td><%= generic_sunscription.customer_name %></td>
-        <td><%= generic_sunscription.customer_forname %></td>
-        <td><%= generic_sunscription.customer_fiscal_code %></td>
-        <td><%= generic_sunscription.generic_office.name %></td>
-        <td><%= generic_sunscription.user.name %></td>
+        <th scope='row' class='condensedfont'><%= generic_sunscription.name %></th>
+        <td class='condensedfont'><%= l(generic_sunscription.date) %></td>
+        <td class='condensedfont'><%= generic_sunscription.customer_name %></td>
+        <td class='condensedfont'><%= generic_sunscription.customer_forname %></td>
+        <td class='condensedfont'><%= generic_sunscription.customer_fiscal_code %></td>
+        <td class='condensedfont'><%= generic_sunscription.generic_office.name %></td>
+        <td class='condensedfont'><%= generic_sunscription.user.name %></td>
       </tr>
     <% end %>
   </tbody>
