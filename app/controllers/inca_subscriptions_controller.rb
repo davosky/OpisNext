@@ -6,13 +6,8 @@ class IncaSubscriptionsController < ApplicationController
   def index
     @user = current_user
     @q = IncaSubscription.ransack(params[:q])
-    @inca_subscriptions = if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
-                            @q.result(didtinct: true).order(name: 'DESC')
-                              .paginate(page: params[:page], per_page: 10)
-                          else
-                            @q.result(didtinct: true).where(user_id: @user.id)
-                              .order(name: 'DESC').paginate(page: params[:page], per_page: 10)
-                          end
+    @inca_subscriptions = @q.result(didtinct: true).order(name: 'DESC')
+                            .paginate(page: params[:page], per_page: 10)
     @tariffs = Tariff.all.order(position: 'ASC')
   end
 

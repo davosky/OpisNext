@@ -8,13 +8,8 @@ class IncaReceiptsController < ApplicationController
   def index
     @user = current_user
     @q = IncaReceipt.ransack(params[:q])
-    @inca_receipts = if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
-                       @q.result(distinct: true).order(name: 'DESC')
-                         .paginate(page: params[:page], per_page: 10)
-                     else
-                       @q.result(distinct: true).where(user_id: @user.id)
-                         .order(name: 'DESC').paginate(page: params[:page], per_page: 10)
-                     end
+    @inca_receipts = @q.result(distinct: true).order(name: 'DESC')
+                       .paginate(page: params[:page], per_page: 10)
   end
 
   def show
@@ -35,17 +30,10 @@ class IncaReceiptsController < ApplicationController
 
   def billdownload
     @user = current_user
-    if @user.admin == true || @user.institute == 'Ufficio Amministrazione'
-      @q = IncaReceipt.ransack(params[:q])
-      @inca_receipts = @q.result(distinct: true)
-                         .where(cancellation: [false, nil])
-                         .order(name: 'DESC')
-    else
-      @q = IncaReceipt.ransack(params[:q])
-      @inca_receipts = @q.result(distinct: true).order(name: 'DESC')
-                         .where(user_id: @user.id)
-                         .where(cancellation: [false, nil])
-    end
+    @q = IncaReceipt.ransack(params[:q])
+    @inca_receipts = @q.result(distinct: true)
+                       .where(cancellation: [false, nil])
+                       .order(name: 'ASC')
     respond_to do |format|
       format.html
       format.json
