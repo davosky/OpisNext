@@ -1,0 +1,137 @@
+<div class='row'>
+  <div class='col-12'>
+    <h3 class='text-primary p-2'>
+      <i class='fas fa-chart-line'></i>&emsp;<strong>Statistiche</strong>
+    </h3>
+    <hr class='hr-primary p-2'/>
+  </div>
+</div>
+<br/>
+<div class='row'>
+  <div class='col-6'>
+    <div class='card shadow'>
+      <div class='card-body'>
+        <br/>
+        <h5 class='condensedfontfree p-2'>
+          <i class='fas fa-id-card'></i>&nbsp;
+          INCA Sottoscrizioni&emsp;
+          <span class='text-success'>
+            Nuove:&nbsp;
+            <%= @inca_subscriptions_new.count %>
+          </span>
+          &emsp;
+          <span class='text-warning'>
+            Rinnovi:&nbsp;
+            <%= @inca_subscriptions_renew.count %>
+          </span>
+          &emsp;
+          <span class='text-info'>
+            Totale:&nbsp;
+            <%= @inca_subscriptions.count %>
+          </span>
+        </h5>
+        <br/>
+        <% @inca_subscription_offices.each do |inca_subscription_office| %>
+          <ul class='list-group'>
+            <li class='list-group-item d-flex justify-content-between align-items-center statistic-font m-1 bg-light'>
+              <%= inca_subscription_office.name %>
+              <span class='badge statistic-font'>
+                <span class='text-success'>
+                  <%= inca_subscription_office.inca_subscriptions.where(subscription_typology_id: 1).count %>
+                </span>
+                &nbsp;|&nbsp;
+                <span class='text-warning'>
+                  <%= inca_subscription_office.inca_subscriptions.where(subscription_typology_id: 2).count %>
+                </span>
+                &nbsp;|&nbsp;
+                <span class='text-info'>
+                  <%= inca_subscription_office.inca_subscriptions.count %>
+                </span>
+              </span>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class='col-6'>
+    <div class='card shadow'>
+      <div class='card-body'>
+        <br/>
+        <h5 class='condensedfontfree p-2'>
+          <i class='fas fa-receipt'></i>&nbsp;
+          INCA Ricevute Liberalit&agrave;&emsp;
+          <span class='text-info'>
+            Totale:&nbsp;
+            <%= @inca_receipts.count %>
+          </span>
+        </h5>
+        <br/>
+        <% @inca_receipt_offices.each do |inca_receipt_office| %>
+          <ul class='list-group'>
+            <li class='list-group-item d-flex justify-content-between align-items-center statistic-font m-1 bg-light'>
+              <%= inca_receipt_office.name %>
+              <span class='badge statistic-font'>
+                <span class='text-info'>
+                  <%= inca_receipt_office.inca_receipts.count %>
+                </span>
+              </span>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<br/>
+<div class='row'>
+  <div class='col-12'>
+    <div class='card shadow'>
+      <div class='card-body'>
+        <br/>
+        <h5 class='condensedfontfree p-2'>
+          <i class='fas fa-id-card'></i>&nbsp;
+          GENERICHE Sottoscrizioni&emsp;
+          <span class='text-success'>
+            Nuove:&nbsp;
+            <%= @generic_subscriptions_new.count %>
+          </span>
+          &emsp;
+          <span class='text-warning'>
+            Rinnovi:&nbsp;
+            <%= @generic_subscriptions_renew.count %>
+          </span>
+          &emsp;
+          <span class='text-info'>
+            Totale:&nbsp;
+            <%= @generic_subscriptions.count %>
+          </span>
+        </h5>
+        <br/>
+        <% @generic_subscription_offices.each do |generic_subscription_office| %>
+          <ul class='list-group'>
+            <li class='list-group-item d-flex justify-content-between align-items-center statistic-font m-1 bg-light'>
+              <%= generic_subscription_office.name %>
+              <span class='badge statistic-font'>
+                <span class='text-success'>
+                  <%= generic_subscription_office.generic_subscriptions.where(subscription_typology_id: 1).count %>
+                </span>
+                &nbsp;|&nbsp;
+                <span class='text-warning'>
+                  <%= generic_subscription_office.generic_subscriptions.where(subscription_typology_id: 2).count %>
+                </span>
+                &nbsp;|&nbsp;
+                <span class='text-info'>
+                  <%= generic_subscription_office.generic_subscriptions.count %>
+                </span>
+              </span>
+            </li>
+          </ul>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<br/>

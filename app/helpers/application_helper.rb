@@ -5,6 +5,10 @@ module ApplicationHelper
     current_user.admin == true
   end
 
+  def manager?
+    current_user.manager == true
+  end
+
   def full_user
     "#{current_user.name} - #{current_user.institute}"
   end

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   resources :howtos
   get 'dashboard/index'
   get 'dashboard/credits'
+  get 'dashboard/statistic'
   get 'dashboard/authorization'
 
   devise_for :users, skip: [:registrations]

@@ -91,6 +91,11 @@
             <%= link_to rails_admin_path, class: 'dropdown-item'  do %>
               <i class='fas fa-user-cog'></i>&nbsp;&nbsp;Amministrazione
             <% end %>
+            <% if admin? || manager? %>
+              <%= link_to dashboard_statistic_path, class: 'dropdown-item'  do %>
+                <i class='fas fa-chart-bar'></i>&nbsp;&nbsp;Statistiche Uffici
+              <% end %>
+            <% end %>
           <% end %>
           <%= link_to dashboard_credits_path, class: 'dropdown-item'  do %>
             <i class='fas fa-user-edit'></i>&nbsp;&nbsp;Crediti
