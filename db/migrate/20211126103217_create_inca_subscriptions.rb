@@ -1,7 +1,7 @@
 class CreateIncaSubscriptions < ActiveRecord::Migration[6.1]
   def change
     create_table :inca_subscriptions do |t|
-      t.references :inca_office, null: false, foreign_key: true
+      t.bigint :inca_office_id
       t.references :subscription_typology, null: false, foreign_key: true
       t.string :customer_name
       t.string :customer_forname
