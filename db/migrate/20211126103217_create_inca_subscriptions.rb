@@ -2,10 +2,10 @@ class CreateIncaSubscriptions < ActiveRecord::Migration[6.1]
   def change
     create_table :inca_subscriptions do |t|
       t.bigint :inca_office_id
-      t.references :subscription_typology, null: false, foreign_key: true
+      t.bigint :subscription_typology_id
       t.string :customer_name
       t.string :customer_forname
-      t.references :sex, null: false, foreign_key: true
+      t.bigint :sex_id
       t.string :customer_birth_place
       t.date :customer_birth_date
       t.string :customer_fiscal_code
@@ -24,28 +24,28 @@ class CreateIncaSubscriptions < ActiveRecord::Migration[6.1]
       t.string :company_zip
       t.string :company_city
       t.string :company_province
-      t.references :company_typology, null: true, foreign_key: true
-      t.references :work_qualify, null: true, foreign_key: true
-      t.references :work_level, null: true, foreign_key: true
+      t.bigint :company_typology_id
+      t.bigint :work_qualify_id
+      t.bigint :work_level_id
       t.string :work_contract
-      t.references :work_worker, null: true, foreign_key: true
+      t.bigint :work_worker_id
       t.date :work_employee_date
       t.string :work_workplace
       t.decimal :payment, precision: 8, scale: 2, default: 0.0
-      t.references :payment_typology, null: false, foreign_key: true
-      t.references :category, null: false, foreign_key: true
-      t.references :subscription_year, null: false, foreign_key: true
-      t.references :inca_practise, null: false, foreign_key: true
-      t.references :privacy_one, null: false, foreign_key: true
-      t.references :privacy_two, null: false, foreign_key: true
-      t.references :privacy_three, null: false, foreign_key: true
+      t.bigint :payment_typology_id
+      t.bigint :category_id
+      t.bigint :subscription_year_id
+      t.bigint :inca_practise_id
+      t.bigint :privacy_one_id
+      t.bigint :privacy_two_id
+      t.bigint :privacy_three_id
       t.text :note
       t.boolean :cancellation
       t.string :cancellation_reason
       t.integer :name
       t.date :date
       t.string :institute
-      t.references :user, null: false, foreign_key: true
+      t.bigint :user_id
 
       t.timestamps
     end
