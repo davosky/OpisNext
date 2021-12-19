@@ -11,6 +11,7 @@ import "channels"
 import * as bootstrap from "bootstrap"
 import "../stylesheets/application"
 import "@fortawesome/fontawesome-free/js/all"
+import "chartkick/chart.js"
 
 Rails.start()
 ActiveStorage.start()

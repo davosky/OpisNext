@@ -6,12 +6,14 @@ git_source(:github) { |_repo| "https://github.com/#{repo}.git" }
 ruby '3.0.2'
 
 gem 'axlsx', '~> 3.0.0.pre'
-gem 'caxlsx_rails', '~> 0.6.2'
 gem 'bcrypt', '~> 3.1.7'
 gem 'bootsnap', '>= 1.4.4', require: false
 gem 'cancancan', '~> 3.3'
+gem 'caxlsx_rails', '~> 0.6.2'
+gem 'chartkick', '~> 4.1', '>= 4.1.2'
 gem 'devise', '~> 4.8'
 gem 'devise-i18n', '~> 1.10'
+gem 'groupdate2', '~> 5.0'
 gem 'hotwire-rails', '~> 0.1.3'
 gem 'image_processing', '~> 1.2'
 gem 'inline_svg', '~> 1.7', '>= 1.7.2'
