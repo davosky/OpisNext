@@ -34,10 +34,10 @@ class CreateIncaSubscriptions < ActiveRecord::Migration[6.1]
       t.references :inca_office, null: false, foreign_key: true
       t.references :subscription_typology, null: false, foreign_key: true
       t.references :sex, null: false, foreign_key: true
-      t.references :company_typology, null: false, foreign_key: true
-      t.references :work_qualify, null: false, foreign_key: true
-      t.references :work_level, null: false, foreign_key: true
-      t.references :work_worker, null: false, foreign_key: true
+      t.references :company_typology, null: true, foreign_key: true
+      t.references :work_qualify, null: true, foreign_key: true
+      t.references :work_level, null: true, foreign_key: true
+      t.references :work_worker, null: true, foreign_key: true
       t.references :payment_typology, null: false, foreign_key: true
       t.references :category, null: false, foreign_key: true
       t.references :subscription_year, null: false, foreign_key: true
