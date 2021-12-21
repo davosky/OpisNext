@@ -1,6 +1,6 @@
 <nav class='navbar navbar-expand-lg navbar-dark bg-primary fixed-top'>
   <%= link_to root_path, class: 'navbar-brand' do %>
-    <%= image_tag('navbar_logo') %>
+    <%= inline_svg('navbar_logo.svg', size: '96px * 28px', preserve_aspect_ratio: 'xMaxYMax meet') %>
   <% end %>
   <button class='navbar-toggler' type='button' data-toggle='collapse' data-target='#navbarColor01' aria-controls='navbarColor01' aria-expanded='false' aria-label='Toggle navigation'>
     <span class='navbar-toggler-icon'></span>
@@ -10,7 +10,7 @@
       <% if inca_user? %>
         <li class='nav-item dropdown'>
           <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-            <%= image_tag('icon_inca.svg', class: 'img-fluid') %>
+            <%= inline_svg('icon_inca.svg', size: '24px * 24px', preserve_aspect_ratio: 'xMaxYMax meet') %>
             &nbsp;
             INCA
           </a>
@@ -50,7 +50,7 @@
       <% if generic_user? %>
         <li class='nav-item dropdown'>
           <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-            <%= image_tag('icon_generic.svg', class: 'img-fluid') %>
+            <%= inline_svg('icon_generic.svg', size: '24px * 24px', preserve_aspect_ratio: 'xMaxYMax meet') %>
             &nbsp;
             GENERICHE
           </a>
