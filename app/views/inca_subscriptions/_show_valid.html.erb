@@ -328,7 +328,7 @@
   <br/>
   <% unless !@inca_subscription.pdf.attached? %>
     <div class='col-12 text-center'>
-      <iframe src=<%= url_for(@inca_subscription.pdf) %> width='975' height='1400' style='border: none'></iframe>
+      <iframe sandbox='allow-same-origin allow-scripts allow-popups allow-forms' src='<%= url_for(@inca_subscription.pdf) %>' width='975' height='1400' style='border: none'></iframe>
     </div>
   <% end %>
 </div>
