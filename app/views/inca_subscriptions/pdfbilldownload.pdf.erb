@@ -17,7 +17,7 @@
             Sottoscrizioni ALTRE CATEGORIE
             <br>
             <br>
-            Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
+            Distinta del <%= I18n.l Date.today %>
           </h3>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <% @inca_subscriptions.each do |inca_subscription| %>
               <tr>
                 <td id='smallandlite'><%= inca_subscription.name %></td>
-                <td id='smallandlite'><%= inca_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= I18n.l inca_subscription.date %></td>
                 <td id='smallandliteleft'><%= inca_subscription.customer_name %>&nbsp;<%= inca_subscription.customer_forname %></td>
                 <td id='smallandlite'><%= inca_subscription.customer_fiscal_code %></td>
                 <td id='smallandlite'><%= inca_subscription.category.name %></td>
@@ -104,9 +104,9 @@
         <h3>
           <strong>
             Periodo:&nbsp;
-            <%= @inca_subscriptions.last.date.beginning_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @inca_subscriptions.first.date.beginning_of_month %>
             &nbsp;-&nbsp;
-            <%= @inca_subscriptions.first.date.end_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @inca_subscriptions.last.date.end_of_month %>
           </strong>
         </h3>
         <hr>
@@ -168,7 +168,7 @@
       <br />
       <div>
         <small id='smallandlite'>
-          Operatore:&nbsp;<%= current_user.name %>&nbsp;-&nbsp;<strong>OpisNext</strong> web-application to manage subscriptions and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+          Operatore:&nbsp;<%= current_user.name %>&nbsp;-&nbsp;<strong>OpisNext</strong> web-application to manage subscriptions and receipts - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
         </small>
       </div>
     </div>

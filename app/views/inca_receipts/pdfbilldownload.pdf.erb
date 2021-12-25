@@ -17,7 +17,7 @@
             Ricevute Liberalit&agrave;
             <br>
             <br>
-            Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
+            Distinta del <%= I18n.l Date.today %>
           </h3>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <% @inca_receipts.each do |inca_receipt| %>
               <tr>
                 <td><%= inca_receipt.name %></td>
-                <td><%= inca_receipt.date.strftime('%d/%m/%Y') %></td>
+                <td><%= I18n.l inca_receipt.date %></td>
                 <td><%= inca_receipt.customer_name %>&nbsp;<%= inca_receipt.customer_forname %></td>
                 <td><%= inca_receipt.customer_fiscal_code %></td>
                 <td><%= inca_receipt.payment_typology.name %></td>
@@ -103,9 +103,9 @@
         <h3>
           <strong>
             Periodo:&nbsp;
-            <%= @inca_receipts.first.date.beginning_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @inca_receipts.first.date.beginning_of_month %>
             &nbsp;-&nbsp;
-            <%= @inca_receipts.last.date.end_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @inca_receipts.last.date.end_of_month %>
           </strong>
         </h3>
         <hr>
@@ -166,7 +166,7 @@
       <br />
       <div>
         <small id='smallandlite'>
-          Operatore:&nbsp;<%= current_user.name %>&nbsp;-&nbsp;<strong>OpisNext</strong> web-application to manage subscriptions and subscriptions - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
+          Operatore:&nbsp;<%= current_user.name %>&nbsp;-&nbsp;<strong>OpisNext</strong> web-application to manage subscriptions and receipts - <strong>&copy;&nbsp;The Davosky Connection 2018</strong>
         </small>
       </div>
     </div>

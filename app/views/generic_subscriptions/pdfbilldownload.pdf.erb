@@ -17,7 +17,7 @@
             Sottoscrizioni ALTRE CATEGORIE
             <br>
             <br>
-            Distinta del <%= Date.today.strftime('%d/%m/%Y') %>
+            Distinta del <%= I18n.l Date.today %>
           </h3>
         </div>
       </div>
@@ -50,7 +50,7 @@
             <% @generic_subscriptions.each do |generic_subscription| %>
               <tr>
                 <td id='smallandlite'><%= generic_subscription.name %></td>
-                <td id='smallandlite'><%= generic_subscription.date.strftime('%d/%m/%Y') %></td>
+                <td id='smallandlite'><%= I18n.l generic_subscription.date %></td>
                 <td id='smallandliteleft'><%= generic_subscription.customer_name %>&nbsp;<%= generic_subscription.customer_forname %></td>
                 <td id='smallandlite'><%= generic_subscription.customer_fiscal_code %></td>
                 <td id='smallandlite'><%= generic_subscription.category.name %></td>
@@ -104,9 +104,9 @@
         <h3>
           <strong>
             Periodo:&nbsp;
-            <%= @generic_subscriptions.last.date.beginning_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @generic_subscriptions.first.date.beginning_of_month %>
             &nbsp;-&nbsp;
-            <%= @generic_subscriptions.first.date.end_of_month.strftime('%d/%m/%Y') %>
+            <%= I18n.l @generic_subscriptions.last.date.end_of_month %>
           </strong>
         </h3>
         <hr>

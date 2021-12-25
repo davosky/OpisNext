@@ -21,7 +21,7 @@
         <div class='row'>
           <h3>
             <strong>
-              Ricevuta n°&nbsp;<%= @inca_receipt.name %>&nbsp;del:&nbsp;<%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+              Ricevuta n°&nbsp;<%= @inca_receipt.name %>&nbsp;del:&nbsp;<%= I18n.l @inca_receipt.date %>
             </strong>
           </h3>
           <small>
@@ -42,7 +42,7 @@
             il
             &nbsp;
             <strong>
-              <%= @inca_receipt.customer_birth_date.strftime('%d/%m/%Y') %>
+              <%= I18n.l @inca_receipt.customer_birth_date %>
             </strong>
           </p>
           <p>
@@ -94,7 +94,7 @@
             Data:
             &nbsp;
             <strong>
-              <%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+              <%= I18n.l @inca_receipt.date %>
             </strong>
             <br>
             <br>
@@ -138,7 +138,7 @@
             Data:
             &nbsp;
             <strong>
-              <%= @inca_receipt.date.strftime('%d/%m/%Y') %>
+              <%= I18n.l @inca_receipt.date %>
             </strong>
             <br>
             <br>

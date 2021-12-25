@@ -18,7 +18,7 @@
             <strong>SCHEDA RILEVAZIONE DATI SOTTOSCRITTORI - CATEGORIA&nbsp;<%= @generic_subscription.category.name %></strong>
           </h3>
           <p class='centertext'>
-            SOTTOSCRIZIONE N°&nbsp;<%= @generic_subscription.name %>&nbsp;del:&nbsp;<%= l(@generic_subscription.date) %>
+            SOTTOSCRIZIONE N°&nbsp;<%= @generic_subscription.name %>&nbsp;del:&nbsp;<%= I18n.l @generic_subscription.date %>
             &emsp;
             <% if @generic_subscription.subscription_typology.name == 'NUOVA ISCRIZIONE' %>
               <%= @generic_subscription.subscription_typology.name %>
@@ -83,7 +83,7 @@
                 </td>
                 <td>
                   <strong>
-                    <%= l(@generic_subscription.customer_birth_date) %>
+                    <%= I18n.l @generic_subscription.customer_birth_date %>
                   </strong>
                 </td>
               </tr>
@@ -284,7 +284,7 @@
                 <td>data Assunzione:</td>
                 <td>
                   <strong>
-                    <%= l(@generic_subscription.work_employee_date) if @generic_subscription.work_employee_date.present? %>
+                    <%= I18n.l @generic_subscription.work_employee_date if @generic_subscription.work_employee_date.present? %>
                   </strong>
                 </td>
               </tr>
@@ -307,7 +307,7 @@
           <strong>
             Ha versato:&nbsp;<%= number_to_currency(@generic_subscription.payment) %>
             &nbsp;per la Categoria:&nbsp;<%= @generic_subscription.category.name %>
-            &nbsp;in data:&nbsp;<%= l(@generic_subscription.date) %>
+            &nbsp;in data:&nbsp;<%= I18n.l @generic_subscription.date %>
           </strong>
           <br>
           <br>
@@ -407,7 +407,7 @@
             <br>
             <br>
             <br>
-            <strong>Luogo e data:</strong> <%= @generic_subscription.generic_office.name %>&nbsp;-&nbsp;<%= @generic_subscription.date.strftime('%d/%m/%Y') %>&nbsp;&nbsp;&nbsp;<strong>Firma:</strong> _____________________________
+            <strong>Luogo e data:</strong> <%= @generic_subscription.generic_office.name %>&nbsp;-&nbsp;<%= I18n.l @generic_subscription.date %>&nbsp;&nbsp;&nbsp;<strong>Firma:</strong> _____________________________
           </p>
         </div>
       </div>
