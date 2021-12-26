@@ -16,6 +16,8 @@
 <div class='row'>
   <% if @generic_subscription.pdf.attached? %>
     <%= render 'form_cancellation', generic_subscription: @generic_subscription %>
+  <% elsif @generic_subscription.date.present? && !@generic_subscription.pdf.attached? %>
+    <%= render 'form_attachment', generic_subscription: @generic_subscription %>
   <% else %>
     <%= render 'form', generic_subscription: @generic_subscription %>
   <% end %>

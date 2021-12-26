@@ -1,0 +1,55 @@
+<div class='card shadow'>
+  <div class='card-body'>
+    <%= form_with(model: inca_subscription) do |form| %>
+      <% if inca_subscription.errors.any? %>
+        <div id='error_explanation'>
+          <h2 class='text-primary'>
+            <strong>
+              <%= pluralize(inca_subscription.errors.count, 'Errori') %>
+              &emsp;
+              Non posso salvare la Ricevuta corrente:
+            </strong>
+          </h2>
+          <ul>
+            <% inca_subscription.errors.each do |error| %>
+              <li class='text-primary'><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <div class='row'>
+        <div class='col'>
+          <div class='input-group p-1'>
+            <div class='input-group-prepend '>
+              <div class='input-group-text input-group-text-form text-primary'>
+                <i class='fas fa-file-pdf'></i>
+                &nbsp;
+                Allega la Ricevuta in formato PDF:&nbsp;
+              </div>
+            </div>
+            <%= form.file_field :pdf, class:'form-control' %>
+          </div>
+          <span class='float-right p-2'>
+            <%= link_to inca_subscriptions_path, class: 'btn btn-sm btn-outline-primary'  do %>
+              <i class='fas fa-undo'></i>
+              &emsp;
+              <strong>Annulla</strong>
+            <% end %>
+            &emsp;
+            <%= button_tag(type: 'submit', class: 'btn btn-outline-primary btn-sm') do %>
+              <strong>
+                <i class='fas fa-save'></i>
+                &emsp;
+                <% if current_page?(new_inca_subscription_path) %>
+                  <strong>Salva</strong>
+                <% else %>
+                  <strong>Aggiorna</strong>
+                <% end %>
+              </strong>
+            <% end %>
+          </span>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>

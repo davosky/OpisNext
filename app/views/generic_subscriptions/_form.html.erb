@@ -576,18 +576,6 @@
       <div class='card-body p-2'>
         <div class='row'>
           <div class='col-12'>
-            <% if !current_page?(new_generic_subscription_url) && !@generic_subscription.pdf.attached? %>
-              <div class='input-group p-1'>
-                <div class='input-group-prepend '>
-                  <div class='input-group-text input-group-text-form text-primary'>
-                    <i class='fas fa-file-pdf'></i>
-                    &nbsp;
-                    Allega la Ricevuta in formato PDF:&nbsp;
-                  </div>
-                </div>
-                <%= form.file_field :pdf, class:'form-control' %>
-              </div>
-            <% end %>
             <span class='float-right p-2'>
               <%= link_to generic_subscriptions_path, class: 'btn btn-sm btn-outline-primary'  do %>
                 <i class='fas fa-undo'></i>

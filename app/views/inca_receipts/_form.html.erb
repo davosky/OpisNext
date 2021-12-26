@@ -177,18 +177,6 @@
         </div>
         <%= form.text_area :note, class:'form-control' %>
       </div>
-      <% if !current_page?(new_inca_receipt_url) && !@inca_receipt.pdf.attached? %>
-        <div class='input-group p-1'>
-          <div class='input-group-prepend '>
-            <div class='input-group-text input-group-text-form text-primary'>
-              <i class='fas fa-file-pdf'></i>
-              &nbsp;
-              Allega la Ricevuta in formato PDF:&nbsp;
-            </div>
-          </div>
-          <%= form.file_field :pdf, class:'form-control' %>
-        </div>
-      <% end %>
       <span class='float-right p-2'>
         <%= link_to inca_receipts_path, class: 'btn btn-sm btn-outline-primary'  do %>
           <i class='fas fa-undo'></i>

@@ -16,6 +16,8 @@
 <div class='row'>
   <% if @inca_subscription.pdf.attached? %>
     <%= render 'form_cancellation', inca_subscription: @inca_subscription %>
+  <% elsif @inca_subscription.date.present? && !@inca_subscription.pdf.attached? %>
+    <%= render 'form_attachment', inca_subscription: @inca_subscription %>
   <% else %>
     <%= render 'form', inca_subscription: @inca_subscription %>
   <% end %>

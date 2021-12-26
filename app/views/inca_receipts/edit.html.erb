@@ -14,6 +14,8 @@
     <div class='card-body shadow'>
       <% if @inca_receipt.pdf.attached? %>
         <%= render 'form_cancellation', inca_receipt: @inca_receipt %>
+      <% elsif @inca_receipt.date.present? && !@inca_receipt.pdf.attached? %>
+        <%= render 'form_attachment', inca_receipt: @inca_receipt %>
       <% else %>
         <%= render 'form', inca_receipt: @inca_receipt %>
       <% end %>
