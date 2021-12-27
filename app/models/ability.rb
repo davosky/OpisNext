@@ -35,16 +35,5 @@ class Ability
         inca_subscription.user == user
       end
     end
-
-    if user.institute != 'Patronato INCA'
-      can :billdownload, GenericSubscription do |generic_subscription|
-        generic_subscription.user == user
-      end
-      can :read, GenericSubscription
-      can :create, GenericSubscription
-      can :update, GenericSubscription do |generic_subscription|
-        generic_subscription.user == user
-      end
-    end
   end
 end

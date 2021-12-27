@@ -29,10 +29,4 @@ Rails.application.routes.draw do
       get :billdownload
     end
   end
-
-  resources :generic_subscriptions do
-    collection do
-      get :billdownload
-    end
-  end
 end

@@ -52,49 +52,5 @@
       </div>
     </div>
     <br/>
-    <div class='row'>
-      <div class='col-12'>
-        <div class='card shadow'>
-          <div class='card-body statistic-font'>
-            Andamento Annuale
-            <span class='float-right'>
-              Sottoscrizioni GENERICHE
-            </span>
-            <br/>
-            <br/>
-            <%= line_chart GenericSubscription.group_by_month(:created_at, format: '%B').count, colors: ['#cb5345'] %>
-          </div>
-        </div>
-      </div>
-    </div>
     <br/>
-    <div class='row'>
-      <div class='col-12'>
-        <div class='card shadow'>
-          <div class='card-body statistic-font'>
-            Tipologia Pratiche
-            <span class='float-right'>
-              Sottoscrizioni GENERICHE
-            </span>
-            <br/>
-            <br/>
-            <% @generic_practises.each do |generic_practise| %>
-              <% @practise_id = generic_practise.id %>
-              <% @practise_name = generic_practise.name %>
-              <% @generic_subscriptions_practise = GenericSubscription.where(generic_practise_id: @practise_id) %>
-              <%= @practise_name %>
-              <br/>
-              <div class='progress'>
-                <div class='progress-bar' role='progressbar' style='width: <%= @generic_subscriptions_practise.count %>%; height: 20px;' aria-valuenow='<%= @generic_subscriptions_practise.count %>' aria-valuemin='0' aria-valuemax='100'>
-                <%= @generic_subscriptions_practise.count %>
-                </div>
-              </div>
-              <br/>
-            <% end %>
-            <br/>
-              </div>
-            </div>
-          </div>
-        </div>
-        <br/>
-        <br/>
+    <br/>

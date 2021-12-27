@@ -123,24 +123,6 @@ RailsAdmin.config do |config|
     label_plural 'Tariffe Categorie'
   end
 
-  config.model 'GenericSubscription' do
-    visible true
-    label 'Sottoscrizione GENERICA'
-    label_plural 'Sottoscrizioni GENERICHE'
-  end
-
-  config.model 'GenericOffice' do
-    visible true
-    label 'Ufficio GENERICO'
-    label_plural 'Uffici GENERICI'
-  end
-
-  config.model 'GenericPractise' do
-    visible true
-    label 'Pratica GENERICA'
-    label_plural 'Pratiche GENERICHE'
-  end
-
   config.actions do
     dashboard
     index

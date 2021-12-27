@@ -46,19 +46,8 @@ it:
         created_at: Creato il
         updated_at: Aggiornato il
         inca_receipts: Ricevute INCA
-      generic_office:
-        name: Ufficio GENERICO
-        position: Posizione
-        created_at: Creato il
-        updated_at: Aggiornato il
-        inca_receipts: Ricevute INCA
       inca_practise:
         name: Pratica INCA
-        position: Posizione
-        created_at: Creato il
-        updated_at: Aggiornato il
-      generic_practise:
-        name: Pratica GENERICA
         position: Posizione
         created_at: Creato il
         updated_at: Aggiornato il
@@ -189,67 +178,6 @@ it:
         subscription_year_id: Anno Sottoscrizione
         inca_practise: Pratica INCA
         inca_practise_id: Pratica INCA
-        privacy_one: Privacy Uno
-        privacy_one_id: Privacy Uno
-        privacy_two: Privacy Due
-        privacy_two_id: Privacy Due
-        privacy_three: Privacy Tre
-        privacy_three_id: Privacy Tre
-        note: Note
-        cancellation: Annullamento
-        cancellation_reason: Motivo Annullamento
-        name: Numero
-        date: Data
-        institute: Istituto
-        user: Operatore
-        user_id: Operatore
-      generic_subscription:
-        generic_office: Ufficio GENERICO
-        generic_office_id: Ufficio GENERICO
-        subscription_typology: Tipo Sottoscrizione
-        subscription_typology_id: Tipo Sottoscrizione
-        customer_name: Nome
-        customer_forname: Cognome
-        sex: Sesso
-        sex_id: Sesso
-        customer_birth_place: Luogo di Nascita
-        customer_birth_date: Data di Nascita
-        customer_fiscal_code: Codice Fiscale
-        customer_nationality: Nazionalità
-        customer_address: Indirizzo
-        customer_zip: Cap
-        customer_city: Comune
-        customer_province: Provincia
-        customer_phone: Telefono
-        customer_mobile: Cellulare
-        customer_email: E-Mail
-        company_vat_number: Partita IVA
-        company_fiscal_code: Codice Fiscale
-        company_name: Ragione Sociale
-        company_address: Indirizzo
-        company_zip: Cap
-        company_city: Comune
-        company_province: Provincia
-        company_typology: Tipo Azienda
-        company_typology_id: Tipo Azienda
-        work_qualify: Qualifica
-        work_qualify_id: Qualifica
-        work_level: Livello
-        work_level_id: Livello
-        work_contract: Contratto
-        work_worker: Tipo Lavoratore
-        work_worker_id: Tipo Lavoratore
-        work_employee_date: Data Assunzione
-        work_workplace: Luogo di Lavoro
-        payment: Ammontare
-        payment_typology: Tipo Pagamento
-        payment_typology_id: Tipo Pagamento
-        category: Categoria
-        category_id: Categoria
-        subscription_year: Anno Sottoscrizione
-        subscription_year_id: Anno Sottoscrizione
-        generic_practise: Pratica GENERICA
-        generic_practise_id: Pratica GENERICA
         privacy_one: Privacy Uno
         privacy_one_id: Privacy Uno
         privacy_two: Privacy Due

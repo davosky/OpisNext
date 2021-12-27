@@ -43,30 +43,6 @@
           </div>
         </li>
       <% end %>
-      <% if generic_user? %>
-        <li class='nav-item dropdown'>
-          <a class='nav-link dropdown' data-toggle='dropdown' href='#' role='button' aria-haspopup='true' aria-expanded='false'>
-            <%= inline_svg('icon_generic.svg', size: '24px * 24px', preserve_aspect_ratio: 'xMaxYMax meet') %>
-            &nbsp;
-            GENERICHE
-          </a>
-          <div class='dropdown-menu'>
-            <div class='dropdown-divider'></div>
-            <%= link_to new_generic_subscription_path, class: 'dropdown-item'  do %>
-              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-plus'></i>
-              &nbsp;&nbsp;Nuova Sottoscrizione
-            <% end %>
-            <%= link_to generic_subscriptions_path, class: 'dropdown-item'  do %>
-              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-list'></i>
-              &nbsp;&nbsp;Elenco Sottoscrizioni
-            <% end %>
-            <%= link_to billdownload_generic_subscriptions_path, class: 'dropdown-item'  do %>
-              <i class='fas fa-file-invoice'></i>&nbsp;<i class='fas fa-print'></i>
-              &nbsp;&nbsp;Scarico Sottoscrizioni
-            <% end %>
-          </div>
-        </li>
-      <% end %>
     </ul>
     <ul class='navbar-nav ml-auto'>
       <li class='nav-item'>
