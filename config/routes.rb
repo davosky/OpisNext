@@ -27,14 +27,12 @@ Rails.application.routes.draw do
   resources :inca_subscriptions do
     collection do
       get :billdownload
-      get :billdownloadnidil
     end
   end
 
   resources :generic_subscriptions do
     collection do
       get :billdownload
-      get :billdownloadnidil
     end
   end
 end

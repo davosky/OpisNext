@@ -26,39 +26,10 @@ class IncaSubscriptionsController < ApplicationController
     @inca_subscriptions = @q.result(distinct: true)
                             .order(name: 'ASC')
                             .where(cancellation: [false, nil])
-                            .where.not(category_id: 9)
     respond_to do |format|
       format.html
       format.json
       format.pdf { render template: 'inca_subscriptions/pdfbilldownload', pdf: 'pdfbilldownload' }
-      format.xlsx
-    end
-    @totale
-    @totalegenerale
-    @ufficio
-    @contanti
-    @contantitotale
-    @pos
-    @postotale
-    @bonifico
-    @bonificototale
-    @ccpostale
-    @ccpostaletotale
-    @altro
-    @altrototale
-  end
-
-  def billdownloadnidil
-    @tariffs = Tariff.all.order(position: 'ASC')
-    @q = IncaSubscription.ransack(params[:q])
-    @inca_subscriptions = @q.result(distinct: true)
-                            .order(name: 'ASC')
-                            .where(cancellation: [false, nil])
-                            .where(category_id: 9)
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf { render template: 'inca_subscriptions/pdfbilldownloadnidil', pdf: 'pdfbilldownload' }
       format.xlsx
     end
     @totale

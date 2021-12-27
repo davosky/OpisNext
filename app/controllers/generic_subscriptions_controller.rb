@@ -26,39 +26,10 @@ class GenericSubscriptionsController < ApplicationController
     @generic_subscriptions = @q.result(distinct: true)
                                .order(name: 'ASC')
                                .where(cancellation: [false, nil])
-                               .where.not(category_id: 9)
     respond_to do |format|
       format.html
       format.json
       format.pdf { render template: 'generic_subscriptions/pdfbilldownload', pdf: 'pdfbilldownload' }
-      format.xlsx
-    end
-    @totale
-    @totalegenerale
-    @ufficio
-    @contanti
-    @contantitotale
-    @pos
-    @postotale
-    @bonifico
-    @bonificototale
-    @ccpostale
-    @ccpostaletotale
-    @altro
-    @altrototale
-  end
-
-  def billdownloadnidil
-    @tariffs = Tariff.all.order(position: 'ASC')
-    @q = GenericSubscription.ransack(params[:q])
-    @generic_subscriptions = @q.result(distinct: true)
-                               .order(name: 'ASC')
-                               .where(cancellation: [false, nil])
-                               .where(category_id: 9)
-    respond_to do |format|
-      format.html
-      format.json
-      format.pdf { render template: 'generic_subscriptions/pdfbilldownloadnidil', pdf: 'pdfbilldownload' }
       format.xlsx
     end
     @totale

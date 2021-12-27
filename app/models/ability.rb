@@ -11,11 +11,9 @@ class Ability
     if user.institute == 'Ufficio Amministrazione'
       can :billdownload, IncaReceipt
       can :billdownload, IncaSubscription
-      can :billdownloadnidil, IncaSubscription
       can :read, IncaReceipt
       can :read, IncaSubscription
       can :billdownload, GenericSubscription
-      can :billdownloadnidil, GenericSubscription
       can :read, GenericSubscription
     end
 
@@ -24,9 +22,6 @@ class Ability
         inca_receipt.user == user
       end
       can :billdownload, IncaSubscription do |inca_subscription|
-        inca_subscription.user == user
-      end
-      can :billdownloadnidil, IncaSubscription do |inca_subscription|
         inca_subscription.user == user
       end
       can :read, IncaReceipt
@@ -43,9 +38,6 @@ class Ability
 
     if user.institute != 'Patronato INCA'
       can :billdownload, GenericSubscription do |generic_subscription|
-        generic_subscription.user == user
-      end
-      can :billdownloadnidil, GenericSubscription do |generic_subscription|
         generic_subscription.user == user
       end
       can :read, GenericSubscription
