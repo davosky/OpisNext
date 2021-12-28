@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 25) do
+ActiveRecord::Schema.define(version: 21) do
 
   create_table "active_storage_attachments", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -52,85 +52,6 @@ ActiveRecord::Schema.define(version: 25) do
     t.integer "position"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "generic_offices", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "generic_practises", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.string "name"
-    t.integer "position"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-  end
-
-  create_table "generic_subscriptions", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
-    t.bigint "generic_office_id", null: false
-    t.bigint "subscription_typology_id", null: false
-    t.string "customer_name"
-    t.string "customer_forname"
-    t.bigint "sex_id", null: false
-    t.string "customer_birth_place"
-    t.date "customer_birth_date"
-    t.string "customer_fiscal_code"
-    t.string "customer_nationality"
-    t.string "customer_address"
-    t.string "customer_zip"
-    t.string "customer_city"
-    t.string "customer_province"
-    t.string "customer_phone"
-    t.string "customer_mobile"
-    t.string "customer_email"
-    t.string "company_vat_number"
-    t.string "company_fiscal_code"
-    t.string "company_name"
-    t.string "company_address"
-    t.string "company_zip"
-    t.string "company_city"
-    t.string "company_province"
-    t.bigint "company_typology_id"
-    t.bigint "work_qualify_id"
-    t.bigint "work_level_id"
-    t.string "work_contract"
-    t.bigint "work_worker_id"
-    t.date "work_employee_date"
-    t.string "work_workplace"
-    t.decimal "payment", precision: 8, scale: 2, default: "0.0"
-    t.bigint "payment_typology_id", null: false
-    t.bigint "category_id", null: false
-    t.bigint "subscription_year_id", null: false
-    t.bigint "generic_practise_id", null: false
-    t.bigint "privacy_one_id", null: false
-    t.bigint "privacy_two_id", null: false
-    t.bigint "privacy_three_id", null: false
-    t.text "note"
-    t.boolean "cancellation"
-    t.string "cancellation_reason"
-    t.integer "name"
-    t.date "date"
-    t.string "institute"
-    t.bigint "user_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["category_id"], name: "index_generic_subscriptions_on_category_id"
-    t.index ["company_typology_id"], name: "index_generic_subscriptions_on_company_typology_id"
-    t.index ["generic_office_id"], name: "index_generic_subscriptions_on_generic_office_id"
-    t.index ["generic_practise_id"], name: "index_generic_subscriptions_on_generic_practise_id"
-    t.index ["payment_typology_id"], name: "index_generic_subscriptions_on_payment_typology_id"
-    t.index ["privacy_one_id"], name: "index_generic_subscriptions_on_privacy_one_id"
-    t.index ["privacy_three_id"], name: "index_generic_subscriptions_on_privacy_three_id"
-    t.index ["privacy_two_id"], name: "index_generic_subscriptions_on_privacy_two_id"
-    t.index ["sex_id"], name: "index_generic_subscriptions_on_sex_id"
-    t.index ["subscription_typology_id"], name: "index_generic_subscriptions_on_subscription_typology_id"
-    t.index ["subscription_year_id"], name: "index_generic_subscriptions_on_subscription_year_id"
-    t.index ["user_id"], name: "index_generic_subscriptions_on_user_id"
-    t.index ["work_level_id"], name: "index_generic_subscriptions_on_work_level_id"
-    t.index ["work_qualify_id"], name: "index_generic_subscriptions_on_work_qualify_id"
-    t.index ["work_worker_id"], name: "index_generic_subscriptions_on_work_worker_id"
   end
 
   create_table "howtos", charset: "utf8mb4", collation: "utf8mb4_unicode_ci", force: :cascade do |t|
@@ -349,21 +270,6 @@ ActiveRecord::Schema.define(version: 25) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "generic_subscriptions", "categories"
-  add_foreign_key "generic_subscriptions", "company_typologies"
-  add_foreign_key "generic_subscriptions", "generic_offices"
-  add_foreign_key "generic_subscriptions", "generic_practises"
-  add_foreign_key "generic_subscriptions", "payment_typologies"
-  add_foreign_key "generic_subscriptions", "privacy_ones"
-  add_foreign_key "generic_subscriptions", "privacy_threes"
-  add_foreign_key "generic_subscriptions", "privacy_twos"
-  add_foreign_key "generic_subscriptions", "sexes"
-  add_foreign_key "generic_subscriptions", "subscription_typologies"
-  add_foreign_key "generic_subscriptions", "subscription_years"
-  add_foreign_key "generic_subscriptions", "users"
-  add_foreign_key "generic_subscriptions", "work_levels"
-  add_foreign_key "generic_subscriptions", "work_qualifies"
-  add_foreign_key "generic_subscriptions", "work_workers"
   add_foreign_key "inca_receipts", "inca_offices"
   add_foreign_key "inca_receipts", "payment_typologies"
   add_foreign_key "inca_receipts", "users"

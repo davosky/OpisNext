@@ -45,6 +45,7 @@ class CreateIncaSubscriptions < ActiveRecord::Migration[6.1]
       t.references :privacy_one, null: false, foreign_key: true
       t.references :privacy_two, null: false, foreign_key: true
       t.references :privacy_three, null: false, foreign_key: true
+      t.references :user, null: false, foreign_key: true
 
       t.timestamps
     end
