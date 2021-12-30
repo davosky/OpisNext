@@ -202,6 +202,22 @@
                 </td>
               </tr>
               <tr>
+                <td>Partita IVA:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_vat_number %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
+                <td>Codice Fiscale:</td>
+                <td>
+                  <strong>
+                    <%= @inca_subscription.company_fiscal_code %>
+                  </strong>
+                </td>
+              </tr>
+              <tr>
                 <td>Tipologia:</td>
                 <td>
                   <strong>
@@ -303,7 +319,6 @@
       <hr/>
       <div class='row'>
         <div class='centertext'>
-          <br>
           <strong>
             Ha versato:&nbsp;<%= number_to_currency(@inca_subscription.payment) %>
             &nbsp;per la Categoria:&nbsp;<%= @inca_subscription.category.name %>
@@ -312,14 +327,14 @@
           <br>
           <br>
           <br>
-          <br>
           Firma del Lavoratore: ____________________________________
           <br>
           <br>
           <br>
-          <br>
           <small>
-            Sottoscrizione raccolta da:&nbsp;<%= @inca_subscription.institute %>
+            Sottoscrizione raccolta da:
+            <br/>
+            <%= @inca_subscription.institute %>
             &nbsp;<%= @inca_subscription.inca_office.name %>
             &nbsp;operatore:&nbsp;<%= @inca_subscription.user.name %>
           </small>
