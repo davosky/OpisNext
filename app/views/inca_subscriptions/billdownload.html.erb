@@ -12,55 +12,63 @@
     <hr class='hr-primary p-2'/>
   </div>
 </div>
-<div class='row'>
-  <div class='col-12'>
-    <%= search_form_for @q, id: 'search-form', url: billdownload_inca_subscriptions_path do |form| %>
-      <div class='input-group p-1'>
-        <div class='input-group-prepend'>
-          <div class='input-group-text input-group-text-form'>
-            <i class='far fa-calendar'></i>
-            &nbsp;
-            Data Inizio:&nbsp;
-          </div>
-        </div>
-        <%= form.text_field :date_gteq, class:'form-control' %>
-        &emsp;
-        <div class='input-group-prepend'>
-          <div class='input-group-text input-group-text-form'>
-            <i class='far fa-calendar'></i>
-            &nbsp;
-            Data Fine:&nbsp;
-          </div>
-        </div>
-        <%= form.text_field :date_lteq, class:'form-control' %>
-        &emsp;
-        <div class='input-group-prepend'>
-          <div class='input-group-text input-group-text-form'>
-            <i class='fas fa-building'></i>
-            &nbsp;
-            Ufficio:&nbsp;
-          </div>
-        </div>
-        <%= form.collection_select(:inca_office_id_eq, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
-        &emsp;
-        <%= button_tag type: 'submit', class: 'btn btn-primary', title: 'Cerca', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-          <i class='fas fa-search'></i>
-        <% end %>
-        &nbsp;
-        <% if @inca_subscriptions.count > 0 %>
+<%= search_form_for @q, id: 'search-form', url: billdownload_inca_subscriptions_path do |form| %>
+  <div class='row'>
+    <div class='input-group p-1'>
+      <div class='input-group-prepend'>
+        <div class='input-group-text input-group-text-form'>
+          <i class='far fa-calendar'></i>
           &nbsp;
-          <%= link_to billdownload_inca_subscriptions_path(request.parameters.merge(format: 'pdf')), class: 'btn btn-outline-primary', target: :_blank, title: 'Stampa in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-            <i class='fas fa-print'></i>
-          <% end %>
-          &nbsp;
-          <%= link_to billdownload_inca_subscriptions_path(request.parameters.merge(format: 'xlsx')), class: 'btn btn-outline-primary', target: :_blank, title: 'Esporta in Excel', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-            <i class='fas fa-table'></i>
-          <% end %>
-        <% end %>
+          Data Inizio:&nbsp;
+        </div>
       </div>
-    <% end %>
+      <%= form.text_field :date_gteq, class:'form-control' %>
+      &emsp;
+      <div class='input-group-prepend'>
+        <div class='input-group-text input-group-text-form'>
+          <i class='far fa-calendar'></i>
+          &nbsp;
+          Data Fine:&nbsp;
+        </div>
+      </div>
+      <%= form.text_field :date_lteq, class:'form-control' %>
+    </div>
   </div>
-</div>
+  <div class='row'>
+    <div class='input-group p-1'>
+      <div class='input-group-prepend'>
+        <div class='input-group-text input-group-text-form'>
+          <i class='fas fa-building'></i>
+          &nbsp;
+          Ufficio:&nbsp;
+        </div>
+      </div>
+      <%= form.collection_select(:inca_office_id_eq, IncaOffice.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+      &emsp;
+      <div class='input-group-prepend'>
+        <div class='input-group-text input-group-text-form'>
+          <i class='fas fa-clone'></i>
+          &nbsp;
+          Categoria:&nbsp;
+        </div>
+      </div>
+      <%= form.collection_select(:category_id_eq, Category.order('position ASC'), :id, :name, {:include_blank => true}, {:class => 'form-control'}) %>
+      &emsp;
+      &nbsp;
+      <%= button_tag type: 'submit', class: 'btn btn-primary', title: 'Cerca', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+        <i class='fas fa-search'></i>
+      <% end %>
+      &nbsp;
+      <%= link_to billdownload_inca_subscriptions_path(request.parameters.merge(format: 'pdf')), class: 'btn btn-outline-primary', target: :_blank, title: 'Stampa in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+        <i class='fas fa-print'></i>
+      <% end %>
+      &nbsp;
+      <%= link_to billdownload_inca_subscriptions_path(request.parameters.merge(format: 'xlsx')), class: 'btn btn-outline-primary', target: :_blank, title: 'Esporta in Excel', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+        <i class='fas fa-table'></i>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 <br/>
 <table class='table table-borderless table-striped'>
   <thead>

@@ -47,15 +47,12 @@
           <i class='fas fa-search'></i>
         <% end %>
         &nbsp;
-        <% if @generic_subscriptions.count > 0 %>
-          &nbsp;
-          <%= link_to billdownloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'pdf')), class: 'btn btn-outline-primary', target: :_blank, title: 'Stampa in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-            <i class='fas fa-print'></i>
-          <% end %>
-          &nbsp;
-          <%= link_to billdownloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'xlsx')), class: 'btn btn-outline-primary', target: :_blank, title: 'Esporta in Excel', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
-            <i class='fas fa-table'></i>
-          <% end %>
+        <%= link_to billdownloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'pdf')), class: 'btn btn-outline-primary', target: :_blank, title: 'Stampa in PDF', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+          <i class='fas fa-print'></i>
+        <% end %>
+        &nbsp;
+        <%= link_to billdownloadnidil_generic_subscriptions_path(request.parameters.merge(format: 'xlsx')), class: 'btn btn-outline-primary', target: :_blank, title: 'Esporta in Excel', 'data-toggle' => 'tooltip', 'data-placement' => 'bottom' do %>
+          <i class='fas fa-table'></i>
         <% end %>
       </div>
     <% end %>
