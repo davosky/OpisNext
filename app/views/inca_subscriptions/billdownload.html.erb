@@ -78,6 +78,7 @@
       <th scope='col'class='text-primary'>Nome</th>
       <th scope='col'class='text-primary'>Cognome</th>
       <th scope='col'class='text-primary'>Codice Fiscale</th>
+      <th scope='col'class='text-primary'>Categoria</th>
       <th scope='col'class='text-primary'>Ufficio</th>
       <th scope='col'class='text-primary'>Operatore</th>
     </tr>
@@ -90,6 +91,7 @@
         <td class='condensedfont'><%= inca_sunscription.customer_name %></td>
         <td class='condensedfont'><%= inca_sunscription.customer_forname %></td>
         <td class='condensedfont'><%= inca_sunscription.customer_fiscal_code %></td>
+        <td class='condensedfont'><%= inca_sunscription.category.name %></td>
         <td class='condensedfont'><%= inca_sunscription.inca_office.name %></td>
         <td class='condensedfont'><%= inca_sunscription.user.name %></td>
       </tr>

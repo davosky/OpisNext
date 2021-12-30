@@ -58,6 +58,7 @@
               <th>Nome</th>
               <th>Codice Fiscale</th>
               <th>Ammontare</th>
+              <th>Categoria</th>
               <th>Note</th>
               <th colspan='1'></th>
             </tr>
@@ -86,6 +87,7 @@
                   </strong>
                 </td>
                 <td><%= number_to_currency(generic_subscription.payment) %></td>
+                <td><%= generic_subscription.category.name %></td>
                 <td><%= truncate(generic_subscription.note, length: 35) %></td>
                 <td>
                   <% unless current_user.institute == 'Ufficio Amministrazione' %>
