@@ -148,6 +148,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.bigint "privacy_one_id", null: false
     t.bigint "privacy_two_id", null: false
     t.bigint "privacy_three_id", null: false
+    t.bigint "user_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["category_id"], name: "index_inca_subscriptions_on_category_id"
@@ -161,6 +162,7 @@ ActiveRecord::Schema.define(version: 21) do
     t.index ["sex_id"], name: "index_inca_subscriptions_on_sex_id"
     t.index ["subscription_typology_id"], name: "index_inca_subscriptions_on_subscription_typology_id"
     t.index ["subscription_year_id"], name: "index_inca_subscriptions_on_subscription_year_id"
+    t.index ["user_id"], name: "index_inca_subscriptions_on_user_id"
     t.index ["work_level_id"], name: "index_inca_subscriptions_on_work_level_id"
     t.index ["work_qualify_id"], name: "index_inca_subscriptions_on_work_qualify_id"
     t.index ["work_worker_id"], name: "index_inca_subscriptions_on_work_worker_id"
@@ -284,6 +286,7 @@ ActiveRecord::Schema.define(version: 21) do
   add_foreign_key "inca_subscriptions", "sexes"
   add_foreign_key "inca_subscriptions", "subscription_typologies"
   add_foreign_key "inca_subscriptions", "subscription_years"
+  add_foreign_key "inca_subscriptions", "users"
   add_foreign_key "inca_subscriptions", "work_levels"
   add_foreign_key "inca_subscriptions", "work_qualifies"
   add_foreign_key "inca_subscriptions", "work_workers"
